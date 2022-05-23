@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Horgász mobilalkalmazás</string>
+    <string name="fooldal">Főoldal</string>
+    <string name="halak">Halak</string>
+    <string name="jatek">Játék</string>
+    <string name="fogasok">Fogások</string>
+    <string name="informacio">Információ</string>
+    <string name="menu">Menü</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="eredmenyek">Eredmények</string>
+    <string name="kilepes">Kilépés</string>
+    <string name="mai_tilalmi_idoszakos_halak">Mai tilalmi időszakos halak</string>
+</resources>

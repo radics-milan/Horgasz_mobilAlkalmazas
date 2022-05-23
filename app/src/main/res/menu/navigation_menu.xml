@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fooldalMenu"
+        android:title="@string/fooldal"
+        android:icon="@drawable/ic_home"/>
+    <item
+        android:id="@+id/halakMenu"
+        android:title="@string/halak"
+        android:icon="@drawable/ic_fish2"/>
+
+    <item
+        android:id="@+id/jatekMenu"
+        android:title="@string/jatek"
+        android:icon="@drawable/ic_game"/>
+
+    <item
+        android:id="@+id/eredmenyekMenu"
+        android:title="@string/eredmenyek"
+        android:icon="@drawable/ic_score"/>
+
+    <item
+        android:id="@+id/fogasokMenu"
+        android:title="@string/fogasok"
+        android:icon="@drawable/ic_fogas"/>
+
+    <item
+        android:id="@+id/informaciosMenu"
+        android:title="@string/informacio"
+        android:icon="@drawable/ic_info"/>
+</menu>

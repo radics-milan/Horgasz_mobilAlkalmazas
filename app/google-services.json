@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "468608397191",
+    "project_id": "horgasz-mobilalkalmazas",
+    "storage_bucket": "horgasz-mobilalkalmazas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468608397191:android:b72f47d411f400b60eed22",
+        "android_client_info": {
+          "package_name": "com.example.horgszmobilalkalmazs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "468608397191-onr2227a1n4r14ulcev6qrc8fljg8t82.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCCQ0ovKOZba_dX-lnbx6xNaJFUjH-F7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "468608397191-onr2227a1n4r14ulcev6qrc8fljg8t82.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@id/fooldalMenu">
+
+    <fragment
+        android:id="@+id/fooldalMenu"
+        android:name="com.example.horgszmobilalkalmazs.FooldalFragment"
+        android:label="@string/fooldal"
+        tools:layout="@layout/fragment_fooldal" />
+    <fragment
+        android:id="@+id/halakMenu"
+        android:name="com.example.horgszmobilalkalmazs.HalakFragment"
+        android:label="@string/halak"
+        tools:layout="@layout/fragment_halak" />
+    <fragment
+        android:id="@+id/jatekMenu"
+        android:name="com.example.horgszmobilalkalmazs.JatekFragment"
+        android:label="@string/jatek"
+        tools:layout="@layout/fragment_jatek" />
+    <fragment
+        android:id="@+id/eredmenyekMenu"
+        android:name="com.example.horgszmobilalkalmazs.EredmenyekFragment"
+        android:label="@string/eredmenyek"
+        tools:layout="@layout/fragment_eredmenyek" />
+    <fragment
+        android:id="@+id/fogasokMenu"
+        android:name="com.example.horgszmobilalkalmazs.FogasokFragment"
+        android:label="@string/fogasok"
+        tools:layout="@layout/fragment_fogasok" />
+    <fragment
+        android:id="@+id/informaciosMenu"
+        android:name="com.example.horgszmobilalkalmazs.InformacioFragment"
+        android:label="@string/informacio"
+        tools:layout="@layout/fragment_informacio" />
+</navigation>
