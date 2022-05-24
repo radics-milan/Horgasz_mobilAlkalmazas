@@ -8,14 +8,14 @@ import java.util.Date;
 import java.util.Locale;
 
 public class ClassHal {
-    String nev;
-    String latinNev;
-    int imageResourceId;
-    String tipus;
-    String tilalmiIdoszak;
-    int legkisebbKifoghatoMeret;
-    int legkisebbKifoghatoMeretTilalmiIdoszakban;
-    String leiras;
+    private String nev;
+    private String latinNev;
+    private int imageResourceId;
+    private String tipus;
+    private String tilalmiIdoszak;
+    private int legkisebbKifoghatoMeret;
+    private int legkisebbKifoghatoMeretTilalmiIdoszakban;
+    private String leiras;
 
     public ClassHal(String nev, String latinNev, int imageResourceId, String tipus, String tilalmiIdoszak, int legkisebbKifoghatoMeret, int legkisebbKifoghatoMeretTilalmiIdoszakban, String leiras) {
         this.nev = nev;
@@ -93,5 +93,21 @@ public class ClassHal {
         } else {
             return false;
         }
+    }
+
+    public boolean isBiggerThanLegkisebbKifoghatoMeret(int size){
+        return size >= getLegkisebbKifoghatoMeret();
+    }
+
+    public boolean isBiggerThanLegkisebbKifoghatoMeretTilalmiIdoszakban(int size){
+        return size >= getLegkisebbKifoghatoMeretTilalmiIdoszakban();
+    }
+
+    public boolean isVedett(){
+        return getTipus().contains("Védett");
+    }
+
+    public boolean needCatchLicense(){
+        return getTipus().contains("időszakos felmentéssel fogható");
     }
 }

@@ -1,6 +1,5 @@
 package com.example.horgszmobilalkalmazs;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -12,10 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.ColorRes;
 import androidx.fragment.app.Fragment;
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -67,6 +63,7 @@ public class FooldalFragment extends Fragment {
 
     private void onClickFish(String nev) {
         Toast.makeText(getActivity(), nev, Toast.LENGTH_SHORT).show();
+        //TODO redirect to fishDetails
     }
 
 }
