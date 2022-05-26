@@ -32,7 +32,9 @@
             android:text="@string/mai_tilalmi_idoszakos_halak"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:background="@color/lightorange"
+            app:drawableRightCompat="@drawable/ic_arrow_drop_down" />
 
         <LinearLayout
             android:id="@+id/tilalmiIdoszakosHalakLista"
@@ -43,14 +45,16 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <Button
-        android:id="@+id/quitButton"
+    <TextView
+        android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginHorizontal="10dp"
-        android:text="@string/kilepes"
-        android:textStyle="bold"
+        android:textSize="20sp"
+        android:text="@string/horgasz_mobilalkalmazas_2022"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:background="@color/lightorange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

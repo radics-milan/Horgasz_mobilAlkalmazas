@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.SearchView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -20,8 +18,6 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-
-    private final String LOG_TAG = MainActivity.class.getName();
     DatabaseHal  databaseHal = new DatabaseHal(this);
 
     @Override

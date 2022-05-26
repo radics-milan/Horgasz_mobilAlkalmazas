@@ -12,4 +12,9 @@
     <string name="kilepes">Kilépés</string>
     <string name="mai_tilalmi_idoszakos_halak">Mai tilalmi időszakos halak</string>
     <string name="reszletek">Részletek</string>
+    <string name="nezet">Nézet</string>
+    <string name="kereses">Keresés</string>
+    <string name="szures">Szűrés</string>
+    <string name="kep">Kép</string>
+    <string name="horgasz_mobilalkalmazas_2022">Horgász mobilalkalmazás 2022.</string>
 </resources>
