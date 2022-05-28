@@ -2,6 +2,7 @@ package com.example.horgszmobilalkalmazs;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,7 +69,7 @@ public class AdapterHal extends RecyclerView.Adapter<AdapterHal.ViewHolder> impl
             nameTextView.setText(currentFish.getNev());
             latinNameTextView.setText(currentFish.getLatinNev());
             fishImageImageView.setImageResource(currentFish.getImageResourceId());
-            fishDetailsButton.setOnClickListener(o -> onFishDetailsButtonClick());
+            fishDetailsButton.setOnClickListener(o -> onFishDetailsButtonClick(currentFish.getNev()));
 
             switch (gridNumber){
                 case 1:
@@ -89,9 +90,10 @@ public class AdapterHal extends RecyclerView.Adapter<AdapterHal.ViewHolder> impl
             }
         }
 
-        public void onFishDetailsButtonClick(){
-            Toast.makeText(context, "Részletek", Toast.LENGTH_SHORT).show();
-            //TODO részletekre átirányítás
+        public void onFishDetailsButtonClick(String name){
+            Intent intent = new Intent(context, FishDetailsActivity.class);
+            intent.putExtra("fishName", name);
+            context.startActivity(intent);
         }
     }
 

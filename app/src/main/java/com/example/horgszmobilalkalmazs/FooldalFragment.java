@@ -1,5 +1,6 @@
 package com.example.horgszmobilalkalmazs;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -68,8 +69,9 @@ public class FooldalFragment extends Fragment {
     }
 
     private void onClickFish(String nev) {
-        Toast.makeText(getActivity(), nev, Toast.LENGTH_SHORT).show();
-        //TODO redirect to fishDetails
+        Intent intent = new Intent(getActivity(), FishDetailsActivity.class);
+        intent.putExtra("fishName", nev);
+        startActivity(intent);
     }
 
 }

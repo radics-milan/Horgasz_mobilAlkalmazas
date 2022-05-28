@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FishDetailsActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/orange"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/backImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="20dp"
+            android:contentDescription="@string/vissza"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/detailsHeaderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/reszletek"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        android:background="@color/lightorange">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
+
+            <ImageView
+                android:id="@+id/fishImageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/lenai_tok"
+                android:contentDescription="@string/kep"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Latin név:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:layout_marginEnd="10dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/fishLatinNameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vörösszárnyú keszeg, nyúéldpolykó"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Típus:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:layout_marginEnd="10dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/fishTypeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Őshonos, idps akos felmentéssel sogható hal"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fishMinimumCatchSizeLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Legkisebb kifogható méret:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:layout_marginEnd="10dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/fishMinimumCatchSizeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 20cm"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fishMinimumCatchSizeInCloseSeasonLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tilalmi időszakban:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:layout_marginEnd="10dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/fishMinimumCatchSizeInCloseSeasonTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100cm"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fishCloseSeasonLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tilalmi időszak:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:layout_marginEnd="10dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/fishCloseSeasonTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10.01.-03.01."
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/fishDetailsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla "
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:justificationMode="inter_word"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

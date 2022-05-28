@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Horgász_mobilalkalmazás.iml" filepath="$PROJECT_DIR$/.idea/modules/Horgász_mobilalkalmazás.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Horgász_mobilalkalmazás.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Horgász_mobilalkalmazás.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Horgász_mobilalkalmazás.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Horgász_mobilalkalmazás.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Horgász_mobilalkalmazás.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Horgász_mobilalkalmazás.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Horgász_mobilalkalmazás.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Horgász_mobilalkalmazás.app.unitTest.iml" />
+    </modules>
+  </component>
+</project>

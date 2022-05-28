@@ -1,9 +1,6 @@
 package com.example.horgszmobilalkalmazs;
 
-import android.database.Cursor;
-
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -105,6 +102,10 @@ public class ClassHal {
 
     public boolean isVedett(){
         return getTipus().contains("Védett");
+    }
+
+    public boolean isInvaziv(){
+        return getTipus().contains("Invazív");
     }
 
     public boolean needCatchLicense(){
