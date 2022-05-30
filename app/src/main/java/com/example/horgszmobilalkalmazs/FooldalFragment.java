@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public class FooldalFragment extends Fragment {
     TextView todayTilalmiIdoszakosHalakTextView;
     DatabaseHal databaseHal;
 
-    boolean showTilalmiIdoszakosHalakList = false;
+    boolean showTilalmiIdoszakosHalakList = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,17 +36,22 @@ public class FooldalFragment extends Fragment {
 
         todayTilalmiIdoszakFishList = view.findViewById(R.id.tilalmiIdoszakosHalakLista);
         todayTilalmiIdoszakosHalakTextView = view.findViewById(R.id.maiTilalmiIdoszakosHalakText);
-        todayTilalmiIdoszakosHalakTextView.setOnClickListener(o -> showTilalmiIdoszakosHalak());
+        todayTilalmiIdoszakosHalakTextView.setOnClickListener(o -> changeTilalmiIdoszakosHalakVisibility());
 
         databaseHal = new DatabaseHal(getActivity());
         databaseHal.fillLocalStore();
-
+        showTilalmiIdoszakosHalak();
 
         return view;
     }
 
-    private void showTilalmiIdoszakosHalak() {
+    private void changeTilalmiIdoszakosHalakVisibility(){
         showTilalmiIdoszakosHalakList = !showTilalmiIdoszakosHalakList;
+        showTilalmiIdoszakosHalak();
+    }
+
+    private void showTilalmiIdoszakosHalak() {
+
         if (showTilalmiIdoszakosHalakList){
             ArrayList<ClassHal> fish = databaseHal.getAllDataFromLocalStore();
             for (ClassHal hal: fish) {

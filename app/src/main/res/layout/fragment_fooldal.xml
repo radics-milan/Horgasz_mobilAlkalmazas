@@ -23,6 +23,7 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="20sp"
+            android:text="@string/hello_blank_fragment"
             android:textAlignment="center"/>
 
         <TextView
@@ -36,12 +37,17 @@
             android:background="@color/lightorange"
             app:drawableRightCompat="@drawable/ic_arrow_drop_down" />
 
-        <LinearLayout
-            android:id="@+id/tilalmiIdoszakosHalakLista"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/orange"/>
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/tilalmiIdoszakosHalakLista"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/orange"/>
+        </ScrollView>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

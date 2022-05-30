@@ -2,6 +2,10 @@
     <!-- Base application theme. -->
     <style name="Theme.HorgászMobilalkalmazás" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
         <item name="colorPrimary">@color/orange</item>
         <item name="colorPrimaryVariant">@color/lightorange</item>
         <item name="colorOnPrimary">@color/black</item>
