@@ -108,7 +108,7 @@ public class ClassHal {
         return getTipus().contains("Invazív");
     }
 
-    public boolean needCatchLicense(){
+    public boolean isIdoszakosFelmentesselFoghato(){
         return getTipus().contains("időszakos felmentéssel fogható");
     }
 }

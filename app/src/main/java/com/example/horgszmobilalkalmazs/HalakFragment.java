@@ -30,24 +30,51 @@ public class HalakFragment extends Fragment implements AdapterView.OnItemSelecte
             "Védett faj"
     };
     AdapterHal adapterHal;
-    private ArrayList<ClassHal> fishArray;
+    ArrayList<ClassHal> fishArray = new ArrayList<>();
     RecyclerView recyclerView;
     DatabaseHal databaseHal;
-    String filter;
+    String filter = null;
+    View view;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        SearchView searchView = view.findViewById(R.id.searchView);
+        searchView.setQuery("", false);
+        searchView.clearFocus();
+        searchView.onActionViewCollapsed();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_halak, container, false);
+        view = inflater.inflate(R.layout.fragment_halak, container, false);
 
         if (savedInstanceState != null){
             gridNumber = savedInstanceState.getInt("gridNumber");
         }
 
+        databaseHal = new DatabaseHal(view.getContext());
+        ImageView imageView = view.findViewById(R.id.eyeImageView);
+        imageView.setOnClickListener(v -> onEyeImageViewClick());
+
+        Spinner spinner = view.findViewById(R.id.fishFilterSpinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, filterNames);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setSelection(0);
+        spinner.setOnItemSelectedListener(this);
+
+
+        recyclerView = view.findViewById(R.id.fishRecyclerView);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), gridNumber));
+        adapterHal = new AdapterHal(getActivity(), fishArray, gridNumber);
+        recyclerView.setAdapter(adapterHal);
+
         SearchView searchView = view.findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Toast.makeText(getActivity(), "Keresés: " + s, Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), "Keresés: " + s, Toast.LENGTH_SHORT).show();
                 adapterHal.getFilter().filter(s);
                 filter = s;
                 return false;
@@ -60,23 +87,6 @@ public class HalakFragment extends Fragment implements AdapterView.OnItemSelecte
                 return false;
             }
         });
-
-        databaseHal = new DatabaseHal(getActivity());
-        ImageView imageView = view.findViewById(R.id.eyeImageView);
-        imageView.setOnClickListener(v -> onEyeImageViewClick());
-
-        Spinner spinner = view.findViewById(R.id.fishFilterSpinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, filterNames);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
-
-        fishArray = databaseHal.getAllDataFromLocalStore();
-        recyclerView = view.findViewById(R.id.fishRecyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), gridNumber));
-        adapterHal = new AdapterHal(getActivity(), fishArray, gridNumber);
-        recyclerView.setAdapter(adapterHal);
-
         return view;
     }
 
@@ -129,7 +139,7 @@ public class HalakFragment extends Fragment implements AdapterView.OnItemSelecte
                 break;
         }
         adapterHal.notifyDataSetChanged();
-        Toast.makeText(getActivity(), adapterView.getItemAtPosition(i).toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), adapterView.getItemAtPosition(i).toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

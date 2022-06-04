@@ -7,6 +7,8 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -41,6 +43,9 @@ public class AdapterHal extends RecyclerView.Adapter<AdapterHal.ViewHolder> impl
 
     @Override
     public void onBindViewHolder(@NonNull AdapterHal.ViewHolder holder, int position) {
+        Animation animation = AnimationUtils.loadAnimation(context, R.anim.alpha_anim);
+        holder.fishImageImageView.startAnimation(animation);
+
         ClassHal currentFish = filteredFishArray.get(position);
         holder.bindTo(currentFish);
     }
@@ -127,11 +132,7 @@ public class AdapterHal extends RecyclerView.Adapter<AdapterHal.ViewHolder> impl
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults results) {
             filteredFishArray = (ArrayList<ClassHal>) results.values;
-
             notifyDataSetChanged();
-            if(filteredFishArray.size() == 0){
-                Toast.makeText(context, "Nincs találat", Toast.LENGTH_SHORT).show();
-            }
         }
     };
 }
