@@ -18,4 +18,21 @@
     <string name="kep">Kép</string>
     <string name="horgasz_mobilalkalmazas_2022">Horgász mobilalkalmazás 2022.</string>
     <string name="vissza">Vissza</string>
+    <string name="valassz_szintet">Válassz szintet!</string>
+    <string name="jatekosnev">Játékosnév</string>
+    <string name="uj_jatekos">Új játékos</string>
+    <string name="melyik_hal_van_a_kepen">Melyik hal van a képen?</string>
+    <string name="mentes">Mentés</string>
+    <string name="_1_szint">1. szint</string>
+    <string name="_2_szint">2. szint</string>
+    <string name="_3_szint">3. szint</string>
+    <string name="_4_szint">4. szint</string>
+    <string name="_5_szint">5. szint</string>
+    <string name="_6_szint">6. szint</string>
+    <string name="_7_szint">7. szint</string>
+    <string name="_8_szint">8. szint</string>
+    <string name="_9_szint">9. szint</string>
+    <string name="_10_szint">10. szint</string>
+    <string name="kovetkezo_szint">Következő szint</string>
+    <string name="ujra">Újra</string>
 </resources>

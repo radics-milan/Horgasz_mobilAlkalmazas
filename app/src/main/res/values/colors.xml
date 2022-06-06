@@ -11,4 +11,6 @@
     <color name="lightorange">#FFC107</color>
     <color name="yellow">#FFEB3B</color>
     <color name="lightyellow">#E8DF8F</color>
+    <color name="red">#D80909</color>
+    <color name="green">#06A106</color>
 </resources>

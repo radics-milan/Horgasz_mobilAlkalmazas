@@ -139,7 +139,7 @@ public class HalakFragment extends Fragment implements AdapterView.OnItemSelecte
                 break;
         }
         adapterHal.notifyDataSetChanged();
-        //Toast.makeText(getActivity(), adapterView.getItemAtPosition(i).toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), adapterView.getItemAtPosition(i).toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
