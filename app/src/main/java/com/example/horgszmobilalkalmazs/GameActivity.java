@@ -1,20 +1,20 @@
 package com.example.horgszmobilalkalmazs;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
-@RequiresApi(api = Build.VERSION_CODES.M)
 public class GameActivity extends AppCompatActivity {
     int level;
     String username;
@@ -27,12 +27,15 @@ public class GameActivity extends AppCompatActivity {
     Button endButton;
     Button againButton;
     TextView gameNumberTextView;
+    TextView pointTextView;
     DatabaseHal databaseHal;
+    DatabaseScore databaseScore;
     ArrayList<ClassHal> fishArray = new ArrayList<>();
     int questionIndex = 0;
     ArrayList<ClassHal> questionArray = new ArrayList<>();
     ArrayList<Button> buttonArrayList = new ArrayList<>();
     int points = 0;
+    String date;
     final Handler handler = new Handler();
     final Runnable r = this::playGame;
 
@@ -48,16 +51,17 @@ public class GameActivity extends AppCompatActivity {
         }
 
         TextView textView = findViewById(R.id.levelTextView);
-        String levelText = level + ". Szint";
+        String levelText = "Játék - " + level + ". Szint";
         textView.setText(levelText);
         findViewById(R.id.exitButton).setOnClickListener(o -> exitGame());
         gameImageView = findViewById(R.id.gameImageView);
+        pointTextView = findViewById(R.id.pointTextView);
         firstAnswerButton = findViewById(R.id.firstAnswerButton);
         secondAnswerButton = findViewById(R.id.secondAnswerButton);
         thirdAnswerButton = findViewById(R.id.thirdAnswerButton);
         fourthAnswerButton = findViewById(R.id.fourthAnswerButton);
         nextLevelButton = findViewById(R.id.nextLevelButton);
-        endButton = findViewById(R.id.endButton);
+        endButton = findViewById(R.id.scoreButton);
         againButton = findViewById(R.id.againButton);
         buttonArrayList.add(firstAnswerButton);
         buttonArrayList.add(secondAnswerButton);
@@ -68,9 +72,10 @@ public class GameActivity extends AppCompatActivity {
         }
         againButton.setOnClickListener(o -> playAgain(level));
         nextLevelButton.setOnClickListener(o -> playNextLevel());
-        endButton.setOnClickListener(o -> exitGame());
+        endButton.setOnClickListener(o -> showScores());
         gameNumberTextView = findViewById(R.id.gameNumberTextView);
         databaseHal = new DatabaseHal(this);
+        databaseScore = new DatabaseScore(this);
         startGame(level);
     }
 
@@ -124,6 +129,11 @@ public class GameActivity extends AppCompatActivity {
                 questionArray = new ArrayList<>(fishArray.subList(0, 10));
                 playGame();
                 break;
+            case 9:
+                fishArray = databaseHal.getAllDataFromLocalStore();
+                Collections.shuffle(fishArray);
+                questionArray = new ArrayList<>(fishArray.subList(0, 10));
+                playGame();
             default:
                 fishArray = databaseHal.getAllDataFromLocalStore();
                 Collections.shuffle(fishArray);
@@ -136,8 +146,9 @@ public class GameActivity extends AppCompatActivity {
         againButton.setVisibility(View.GONE);
         nextLevelButton.setVisibility(View.GONE);
         endButton.setVisibility(View.GONE);
+        pointTextView.setVisibility(View.GONE);
         for (Button b: buttonArrayList) {
-            b.setBackgroundColor(getColor(R.color.orange));
+            b.setBackgroundColor(getResources().getColor(R.color.orange));
             b.setClickable(true);
         }
         String gameNumberText = (questionIndex + 1) + ". Melyik hal van a képen?";
@@ -169,22 +180,31 @@ public class GameActivity extends AppCompatActivity {
         }
         if (questionArray.get(questionIndex).getNev().equals(buttonText)){
             points++;
-            button.setBackgroundColor(getColor(R.color.green));
+            button.setBackgroundColor(getResources().getColor(R.color.green));
         } else {
-            button.setBackgroundColor(getColor(R.color.red));
+            button.setBackgroundColor(getResources().getColor(R.color.red));
             for (Button b: buttonArrayList) {
                 if (b.getText().toString().equals(questionArray.get(questionIndex).getNev())){
-                    b.setBackgroundColor(getColor(R.color.green));
+                    b.setBackgroundColor(getResources().getColor(R.color.green));
                     break;
                 }
             }
         }
         questionIndex++;
-        if (questionIndex < 10){
-            handler.postDelayed(r, 1000);
+        if(level < 10){
+            if (questionIndex < 10){
+                handler.postDelayed(r, 800);
+            } else {
+                gameOver();
+            }
         } else {
-            gameOver();
+            if (questionIndex < 82){
+                handler.postDelayed(r, 100);
+            } else {
+                gameOver();
+            }
         }
+
     }
 
     private void playNextLevel() {
@@ -202,21 +222,36 @@ public class GameActivity extends AppCompatActivity {
     private void gameOver(){
         againButton.setVisibility(View.VISIBLE);
         endButton.setVisibility(View.VISIBLE);
+        pointTextView.setVisibility(View.VISIBLE);
+        String pointText;
         if (level < 10){
+            pointText = "Elért pontszám: " + points + " / 10";
+        } else {
+            pointText = "Elért pontszám: " + points + " / 82";
+        }
+
+        pointTextView.setText(pointText);
+
+        if (level < 10 && points == 10){
             nextLevelButton.setVisibility(View.VISIBLE);
         }
 
         saveScore();
-
-        //TODO gameOver()
     }
 
     private void saveScore() {
-        //TODO saveScore()
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd. HH:mm:ss", Locale.getDefault());
+        date = sdf.format(new Date());
+        databaseScore.addData(new ClassScore(date, points, level, username));
+    }
+
+    private void showScores() {
+        finish();
+        //TODO show scores
     }
 
     private void exitGame(){
-        //TODO exitGame()
+        finish();
     }
 
 

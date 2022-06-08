@@ -42,7 +42,6 @@
                     android:layout_height="wrap_content"
                     android:labelFor="@+id/labelText"
                     android:textAlignment="center"
-                    android:text="@string/uj_jatekos"
                     android:background="@color/orange"
                     />
 
@@ -77,63 +76,92 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/_2_szint"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:enabled="false"
+                android:drawableLeft="@drawable/ic_locked"
+                android:drawableRight="@drawable/ic_locked"
+                />
 
             <Button
                 android:id="@+id/harmadikSzintButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/_3_szint"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:enabled="false"
+                android:drawableLeft="@drawable/ic_locked"
+                android:drawableRight="@drawable/ic_locked"/>
 
             <Button
                 android:id="@+id/negyedikSzintButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/_4_szint"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:enabled="false"
+                android:drawableLeft="@drawable/ic_locked"
+                android:drawableRight="@drawable/ic_locked"/>
 
             <Button
                 android:id="@+id/otodikSzintButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/_5_szint"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:enabled="false"
+                android:drawableLeft="@drawable/ic_locked"
+                android:drawableRight="@drawable/ic_locked"/>
 
             <Button
                 android:id="@+id/hatodikSzintButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/_6_szint"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:enabled="false"
+                android:drawableLeft="@drawable/ic_locked"
+                android:drawableRight="@drawable/ic_locked"/>
 
             <Button
                 android:id="@+id/hetedikSzintButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/_7_szint"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:enabled="false"
+                android:drawableLeft="@drawable/ic_locked"
+                android:drawableRight="@drawable/ic_locked"/>
 
             <Button
                 android:id="@+id/nyolcadikSzintButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/_8_szint"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:enabled="false"
+                android:drawableLeft="@drawable/ic_locked"
+                android:drawableRight="@drawable/ic_locked"/>
 
             <Button
                 android:id="@+id/kilencedikSzintButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/_9_szint"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:enabled="false"
+                android:drawableLeft="@drawable/ic_locked"
+                android:drawableRight="@drawable/ic_locked"/>
 
             <Button
                 android:id="@+id/tizedikSzintButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/_10_szint"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
+                android:enabled="false"
+                android:drawableLeft="@drawable/ic_locked"
+                android:drawableRight="@drawable/ic_locked"/>
 
         </LinearLayout>
     </ScrollView>
