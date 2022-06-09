@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class FooldalFragment extends Fragment {
+public class FragmentMain extends Fragment {
     View view;
     TextView todayDateTextView;
     LinearLayout todayTilalmiIdoszakFishList;
     TextView todayTilalmiIdoszakosHalakTextView;
-    DatabaseHal databaseHal;
+    DatabaseFish databaseFish;
 
     boolean showTilalmiIdoszakosHalakList = true;
 
@@ -27,7 +27,7 @@ public class FooldalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_fooldal, container, false);
+        view = inflater.inflate(R.layout.fragment_main, container, false);
 
 
         todayDateTextView = view.findViewById(R.id.maiDatum);
@@ -38,8 +38,8 @@ public class FooldalFragment extends Fragment {
         todayTilalmiIdoszakosHalakTextView = view.findViewById(R.id.maiTilalmiIdoszakosHalakText);
         todayTilalmiIdoszakosHalakTextView.setOnClickListener(o -> changeTilalmiIdoszakosHalakVisibility());
 
-        databaseHal = new DatabaseHal(getActivity());
-        databaseHal.fillLocalStore();
+        databaseFish = new DatabaseFish(getActivity());
+        databaseFish.fillLocalStore();
         showTilalmiIdoszakosHalak();
 
         return view;
@@ -53,8 +53,8 @@ public class FooldalFragment extends Fragment {
     private void showTilalmiIdoszakosHalak() {
 
         if (showTilalmiIdoszakosHalakList){
-            ArrayList<ClassHal> fish = databaseHal.getAllDataFromLocalStore();
-            for (ClassHal hal: fish) {
+            ArrayList<ClassFish> fish = databaseFish.getAllDataFromLocalStore();
+            for (ClassFish hal: fish) {
                 if(hal.isTilalmiIdoszakToday()){
                     TextView fishListItem = new TextView(getActivity());
                     fishListItem.setText(hal.getNev());

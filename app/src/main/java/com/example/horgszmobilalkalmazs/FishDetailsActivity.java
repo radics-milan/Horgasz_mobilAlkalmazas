@@ -33,7 +33,7 @@ public class FishDetailsActivity extends AppCompatActivity {
             finish();
         }
 
-        ClassHal fish = new DatabaseHal(this).getHalByNev(fishName);
+        ClassFish fish = new DatabaseFish(this).getHalByNev(fishName);
 
         findViewById(R.id.backImageView).setOnClickListener(o -> finish());
         detailsHeaderTextView = findViewById(R.id.detailsHeaderTextView);

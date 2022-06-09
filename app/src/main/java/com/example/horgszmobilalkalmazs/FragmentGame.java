@@ -16,53 +16,32 @@ import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 
 
-public class JatekFragment extends Fragment {
+public class FragmentGame extends Fragment {
     View view;
-    DatabaseHal databaseHal;
+    DatabaseFish databaseFish;
     String username;
     DatabaseScore databaseScore;
-    Button firstLevelButton;
-    Button seconLevelButton;
-    Button thirdLevelButton;
-    Button fourthLevelButton;
-    Button fifthLevelButton;
-    Button sixthLevelButton;
-    Button seventhLevelButton;
-    Button eighthLevelButton;
-    Button ninthLevelButton;
-    Button tenthLevelButton;
     ArrayList<Button> buttonArrayList = new ArrayList<>();
     EditText editText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view =  inflater.inflate(R.layout.fragment_jatek, container, false);
+        view =  inflater.inflate(R.layout.fragment_game, container, false);
 
-        databaseHal = new DatabaseHal(view.getContext());
+        databaseFish = new DatabaseFish(view.getContext());
         databaseScore = new DatabaseScore(view.getContext());
 
-        firstLevelButton = view.findViewById(R.id.elsoSzintButton);
-        seconLevelButton = view.findViewById(R.id.masodikSzintButton);
-        thirdLevelButton = view.findViewById(R.id.harmadikSzintButton);
-        fourthLevelButton = view.findViewById(R.id.negyedikSzintButton);
-        fifthLevelButton = view.findViewById(R.id.otodikSzintButton);
-        sixthLevelButton = view.findViewById(R.id.hatodikSzintButton);
-        seventhLevelButton = view.findViewById(R.id.hetedikSzintButton);
-        eighthLevelButton = view.findViewById(R.id.nyolcadikSzintButton);
-        ninthLevelButton = view.findViewById(R.id.kilencedikSzintButton);
-        tenthLevelButton = view.findViewById(R.id.tizedikSzintButton);
-
-        buttonArrayList.add(firstLevelButton);
-        buttonArrayList.add(seconLevelButton);
-        buttonArrayList.add(thirdLevelButton);
-        buttonArrayList.add(fourthLevelButton);
-        buttonArrayList.add(fifthLevelButton);
-        buttonArrayList.add(sixthLevelButton);
-        buttonArrayList.add(seventhLevelButton);
-        buttonArrayList.add(eighthLevelButton);
-        buttonArrayList.add(ninthLevelButton);
-        buttonArrayList.add(tenthLevelButton);
+        buttonArrayList.add(view.findViewById(R.id.elsoSzintButton));
+        buttonArrayList.add(view.findViewById(R.id.masodikSzintButton));
+        buttonArrayList.add(view.findViewById(R.id.harmadikSzintButton));
+        buttonArrayList.add(view.findViewById(R.id.negyedikSzintButton));
+        buttonArrayList.add(view.findViewById(R.id.otodikSzintButton));
+        buttonArrayList.add(view.findViewById(R.id.hatodikSzintButton));
+        buttonArrayList.add(view.findViewById(R.id.hetedikSzintButton));
+        buttonArrayList.add(view.findViewById(R.id.nyolcadikSzintButton));
+        buttonArrayList.add(view.findViewById(R.id.kilencedikSzintButton));
+        buttonArrayList.add(view.findViewById(R.id.tizedikSzintButton));
 
         view.findViewById(R.id.saveUsernameButton).setOnClickListener(o -> saveUsername());
 

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/lightorange"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/valassz_szintet"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                />
+
+            <Button
+                android:id="@+id/elsoSzintButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/_1_szint"
+                android:layout_marginTop="5dp"/>
+
+            <Button
+                android:id="@+id/masodikSzintButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/_2_szint"
+                android:layout_marginTop="5dp" />
+
+            <Button
+                android:id="@+id/harmadikSzintButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/_3_szint"
+                android:layout_marginTop="5dp" />
+
+            <Button
+                android:id="@+id/negyedikSzintButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/_4_szint"
+                android:layout_marginTop="5dp" />
+
+            <Button
+                android:id="@+id/otodikSzintButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/_5_szint"
+                android:layout_marginTop="5dp" />
+
+            <Button
+                android:id="@+id/hatodikSzintButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/_6_szint"
+                android:layout_marginTop="5dp" />
+
+            <Button
+                android:id="@+id/hetedikSzintButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/_7_szint"
+                android:layout_marginTop="5dp" />
+
+            <Button
+                android:id="@+id/nyolcadikSzintButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/_8_szint"
+                android:layout_marginTop="5dp" />
+
+            <Button
+                android:id="@+id/kilencedikSzintButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/_9_szint"
+                android:layout_marginTop="5dp" />
+
+            <Button
+                android:id="@+id/tizedikSzintButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/_10_szint"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

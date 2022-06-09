@@ -21,13 +21,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.text.Normalizer;
 import java.util.ArrayList;
 
-public class AdapterHal extends RecyclerView.Adapter<AdapterHal.ViewHolder> implements Filterable {
+public class AdapterFish extends RecyclerView.Adapter<AdapterFish.ViewHolder> implements Filterable {
     Context context;
-    ArrayList<ClassHal> originalFishArray;
-    ArrayList<ClassHal> filteredFishArray;
+    ArrayList<ClassFish> originalFishArray;
+    ArrayList<ClassFish> filteredFishArray;
     int gridNumber;
 
-    public AdapterHal(Context context, ArrayList<ClassHal> fishArray, int gridNumber) {
+    public AdapterFish(Context context, ArrayList<ClassFish> fishArray, int gridNumber) {
         this.context = context;
         this.originalFishArray = fishArray;
         this.filteredFishArray = fishArray;
@@ -36,16 +36,16 @@ public class AdapterHal extends RecyclerView.Adapter<AdapterHal.ViewHolder> impl
 
     @NonNull
     @Override
-    public AdapterHal.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterFish.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.fish_list_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterHal.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterFish.ViewHolder holder, int position) {
         Animation animation = AnimationUtils.loadAnimation(context, R.anim.alpha_anim);
         holder.fishImageImageView.startAnimation(animation);
 
-        ClassHal currentFish = filteredFishArray.get(position);
+        ClassFish currentFish = filteredFishArray.get(position);
         holder.bindTo(currentFish);
     }
 
@@ -69,7 +69,7 @@ public class AdapterHal extends RecyclerView.Adapter<AdapterHal.ViewHolder> impl
             fishDetailsButton = itemView.findViewById(R.id.fishDetails);
         }
 
-        public void bindTo(@NonNull ClassHal currentFish) {
+        public void bindTo(@NonNull ClassFish currentFish) {
             nameTextView.setText(currentFish.getNev());
             latinNameTextView.setText(currentFish.getLatinNev());
             fishImageImageView.setImageResource(currentFish.getImageResourceId());
@@ -107,14 +107,14 @@ public class AdapterHal extends RecyclerView.Adapter<AdapterHal.ViewHolder> impl
     private final Filter fishFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
-            ArrayList<ClassHal> filteredList = new ArrayList<>();
+            ArrayList<ClassFish> filteredList = new ArrayList<>();
             FilterResults results = new FilterResults();
             if(charSequence == null || charSequence.length() == 0){
                 results.count = originalFishArray.size();
                 results.values = originalFishArray;
             } else{
                 String filterPattern =  Normalizer.normalize(charSequence, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replaceAll("\\s", "");
-                for(ClassHal hal : originalFishArray){
+                for(ClassFish hal : originalFishArray){
                     String halNev = Normalizer.normalize(hal.getNev(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replaceAll("\\s", "");
                     String halLatinNev = Normalizer.normalize(hal.getLatinNev(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replaceAll("\\s", "");
                     if(halNev.contains(filterPattern) || halLatinNev.contains(filterPattern)){
@@ -130,7 +130,7 @@ public class AdapterHal extends RecyclerView.Adapter<AdapterHal.ViewHolder> impl
         @SuppressLint("NotifyDataSetChanged")
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults results) {
-            filteredFishArray = (ArrayList<ClassHal>) results.values;
+            filteredFishArray = (ArrayList<ClassFish>) results.values;
             notifyDataSetChanged();
         }
     };

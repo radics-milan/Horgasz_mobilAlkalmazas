@@ -66,7 +66,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Latin név:"
+                    android:text="@string/latin_nev"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:layout_marginEnd="10dp"
@@ -76,7 +76,7 @@
                     android:id="@+id/fishLatinNameTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Vörösszárnyú keszeg, nyúéldpolykó"
+                    android:text="@string/hello_blank_fragment"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -89,7 +89,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Típus:"
+                    android:text="@string/tipus"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:layout_marginEnd="10dp"
@@ -99,7 +99,7 @@
                     android:id="@+id/fishTypeTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Őshonos, idps akos felmentéssel sogható hal"
+                    android:text="@string/hello_blank_fragment"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -113,7 +113,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Legkisebb kifogható méret:"
+                    android:text="@string/legkisebb_kifoghato_meret"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:layout_marginEnd="10dp"
@@ -123,7 +123,7 @@
                     android:id="@+id/fishMinimumCatchSizeTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" 20cm"
+                    android:text="@string/hello_blank_fragment"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -137,7 +137,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tilalmi időszakban:"
+                    android:text="@string/tilalmi_idoszakban"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:layout_marginEnd="10dp"
@@ -147,7 +147,7 @@
                     android:id="@+id/fishMinimumCatchSizeInCloseSeasonTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="100cm"
+                    android:text="@string/hello_blank_fragment"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -161,7 +161,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tilalmi időszak:"
+                    android:text="@string/tilalmi_idoszak"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:layout_marginEnd="10dp"
@@ -171,7 +171,7 @@
                     android:id="@+id/fishCloseSeasonTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10.01.-03.01."
+                    android:text="@string/hello_blank_fragment"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -180,12 +180,13 @@
                 android:id="@+id/fishDetailsTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla BlaBla Bla Bla "
+                android:text="@string/hello_blank_fragment"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:justificationMode="inter_word"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                tools:targetApi="o" />
 
         </LinearLayout>
 

@@ -28,11 +28,11 @@ public class GameActivity extends AppCompatActivity {
     Button againButton;
     TextView gameNumberTextView;
     TextView pointTextView;
-    DatabaseHal databaseHal;
+    DatabaseFish databaseFish;
     DatabaseScore databaseScore;
-    ArrayList<ClassHal> fishArray = new ArrayList<>();
+    ArrayList<ClassFish> fishArray = new ArrayList<>();
     int questionIndex = 0;
-    ArrayList<ClassHal> questionArray = new ArrayList<>();
+    ArrayList<ClassFish> questionArray = new ArrayList<>();
     ArrayList<Button> buttonArrayList = new ArrayList<>();
     int points = 0;
     String date;
@@ -74,7 +74,7 @@ public class GameActivity extends AppCompatActivity {
         nextLevelButton.setOnClickListener(o -> playNextLevel());
         endButton.setOnClickListener(o -> showScores());
         gameNumberTextView = findViewById(R.id.gameNumberTextView);
-        databaseHal = new DatabaseHal(this);
+        databaseFish = new DatabaseFish(this);
         databaseScore = new DatabaseScore(this);
         startGame(level);
     }
@@ -82,60 +82,60 @@ public class GameActivity extends AppCompatActivity {
     private void startGame(int level){
         switch (level){
             case 1:
-                fishArray = new ArrayList<>(databaseHal.getAllDataFromLocalStore().subList(0, 10));
+                fishArray = new ArrayList<>(databaseFish.getAllDataFromLocalStore().subList(0, 10));
                 Collections.shuffle(fishArray);
                 questionArray = new ArrayList<>(fishArray.subList(0, 10));
                 playGame();
                 break;
             case 2:
-                fishArray = new ArrayList<>(databaseHal.getAllDataFromLocalStore().subList(10, 20));
+                fishArray = new ArrayList<>(databaseFish.getAllDataFromLocalStore().subList(10, 20));
                 Collections.shuffle(fishArray);
                 questionArray = new ArrayList<>(fishArray.subList(0, 10));
                 playGame();
                 break;
             case 3:
-                fishArray = new ArrayList<>(databaseHal.getAllDataFromLocalStore().subList(20, 30));
+                fishArray = new ArrayList<>(databaseFish.getAllDataFromLocalStore().subList(20, 30));
                 Collections.shuffle(fishArray);
                 questionArray = new ArrayList<>(fishArray.subList(0, 10));
                 playGame();
                 break;
             case 4:
-                fishArray = new ArrayList<>(databaseHal.getAllDataFromLocalStore().subList(30, 40));
+                fishArray = new ArrayList<>(databaseFish.getAllDataFromLocalStore().subList(30, 40));
                 Collections.shuffle(fishArray);
                 questionArray = new ArrayList<>(fishArray.subList(0, 10));
                 playGame();
                 break;
             case 5:
-                fishArray = new ArrayList<>(databaseHal.getAllDataFromLocalStore().subList(40, 50));
+                fishArray = new ArrayList<>(databaseFish.getAllDataFromLocalStore().subList(40, 50));
                 Collections.shuffle(fishArray);
                 questionArray = new ArrayList<>(fishArray.subList(0, 10));
                 playGame();
                 break;
             case 6:
-                fishArray = new ArrayList<>(databaseHal.getAllDataFromLocalStore().subList(50, 60));
+                fishArray = new ArrayList<>(databaseFish.getAllDataFromLocalStore().subList(50, 60));
                 Collections.shuffle(fishArray);
                 questionArray = new ArrayList<>(fishArray.subList(0, 10));
                 playGame();
                 break;
             case 7:
-                fishArray = new ArrayList<>(databaseHal.getAllDataFromLocalStore().subList(60, 70));
+                fishArray = new ArrayList<>(databaseFish.getAllDataFromLocalStore().subList(60, 70));
                 Collections.shuffle(fishArray);
                 questionArray = new ArrayList<>(fishArray.subList(0, 10));
                 playGame();
                 break;
             case 8:
-                fishArray = new ArrayList<>(databaseHal.getAllDataFromLocalStore().subList(70, 82));
+                fishArray = new ArrayList<>(databaseFish.getAllDataFromLocalStore().subList(70, 82));
                 Collections.shuffle(fishArray);
                 questionArray = new ArrayList<>(fishArray.subList(0, 10));
                 playGame();
                 break;
             case 9:
-                fishArray = databaseHal.getAllDataFromLocalStore();
+                fishArray = databaseFish.getAllDataFromLocalStore();
                 Collections.shuffle(fishArray);
                 questionArray = new ArrayList<>(fishArray.subList(0, 10));
                 playGame();
             default:
-                fishArray = databaseHal.getAllDataFromLocalStore();
+                fishArray = databaseFish.getAllDataFromLocalStore();
                 Collections.shuffle(fishArray);
                 questionArray = new ArrayList<>(fishArray);
                 playGame();
@@ -154,8 +154,8 @@ public class GameActivity extends AppCompatActivity {
         String gameNumberText = (questionIndex + 1) + ". Melyik hal van a képen?";
         gameNumberTextView.setText(gameNumberText);
         gameImageView.setImageResource(questionArray.get(questionIndex).getImageResourceId());
-        ArrayList<ClassHal> fishArrayCopy = new ArrayList<>(fishArray);
-        ArrayList<ClassHal> wrongAnswersArray = new ArrayList<>();
+        ArrayList<ClassFish> fishArrayCopy = new ArrayList<>(fishArray);
+        ArrayList<ClassFish> wrongAnswersArray = new ArrayList<>();
         while (wrongAnswersArray.size() != 3){
             int randomNumber = new Random().nextInt(fishArrayCopy.size());
             if (!fishArrayCopy.get(randomNumber).getNev().equals(questionArray.get(questionIndex).getNev())){
@@ -166,7 +166,7 @@ public class GameActivity extends AppCompatActivity {
         handleAnswerButtons(wrongAnswersArray);
     }
 
-    private void handleAnswerButtons(ArrayList<ClassHal> wrongAnswersArray) {
+    private void handleAnswerButtons(ArrayList<ClassFish> wrongAnswersArray) {
         Collections.shuffle(buttonArrayList);
         buttonArrayList.get(0).setText(questionArray.get(questionIndex).getNev());
         buttonArrayList.get(1).setText(wrongAnswersArray.get(0).getNev());
@@ -247,103 +247,15 @@ public class GameActivity extends AppCompatActivity {
 
     private void showScores() {
         finish();
-        //TODO show scores
+        Intent intent = new Intent(this, ScoresActivity.class);
+        String date = databaseScore.getLastGamesDate();
+        intent.putExtra("date", date);
+        intent.putExtra("level", level);
+        startActivity(intent);
     }
 
     private void exitGame(){
         finish();
     }
-
-
-//    public void jatekVege(){
-//
-//        datum = sdf.format(new Date()); //játék időpontja (string)
-//        jatekEredmeny = new JatekEredmeny(datum, pontSzam, szint, jatekosNev);
-//        addData(jatekEredmeny);
-//        ujraGomb.setVisibility(View.VISIBLE);
-//        befejezes.setVisibility(View.VISIBLE);
-//        if( pontSzam == 10 && szint != 7 && szint != 99) {
-//            nextLevel.setVisibility(View.VISIBLE);
-//            Animation a = new AlphaAnimation(0.0f, 1.0f);
-//            a.setDuration(1500);
-//            nextLevel.startAnimation(a);
-//        }
-//
-//        ujraGomb.setBackgroundColor(Color.parseColor("#FF018786"));
-//        befejezes.setBackgroundColor(Color.parseColor("#FF018786"));
-//
-//        if(szint != 99){
-//            pontszamJelzo.setText("Elért pontszám: " + pontSzam + " / 10");
-//            pontszamJelzo.setVisibility(View.VISIBLE);
-//            switch (pontSzam){
-//                case 10 : {
-//                    teljesitmeny.setText("ÜGYES VAGY!");
-//                    teljesitmeny.setTextColor(Color.GREEN);
-//                    teljesitmeny.setVisibility(View.VISIBLE);
-//                    break;
-//                }
-//                case 0 : {
-//                    teljesitmeny.setText("EZT MÉG GYAKOROLNI KELL!");
-//                    teljesitmeny.setTextColor(Color.RED);
-//                    teljesitmeny.setVisibility(View.VISIBLE);
-//                    break;
-//                }
-//                default: { break; }//semmit sem irunk ki
-//            }
-//
-//        } else { //99 lvl
-//            pontszamJelzo.setText("Elért pontszám: " + pontSzam + " / 67");
-//            pontszamJelzo.setVisibility(View.VISIBLE);
-//            switch (pontSzam){
-//                case 67 : {
-//                    teljesitmeny.setText("GRATULÁLOK! NAGYON JÓL ISMERED A HALAKAT!");
-//                    teljesitmeny.setTextColor(Color.GREEN);
-//                    teljesitmeny.setVisibility(View.VISIBLE);
-//                    break;
-//                }
-//                case 66 : {
-//                    teljesitmeny.setText("SZÉP MUNKA! MAJDNEM TÖKÉLETES!");
-//                    teljesitmeny.setTextColor(Color.RED);
-//                    teljesitmeny.setVisibility(View.VISIBLE);
-//                    break;
-//                }
-//                default: {
-//                    teljesitmeny.setText("MÉG EGY KICSIT GYAKOROLJ!");
-//                    teljesitmeny.setTextColor(Color.RED);
-//                    teljesitmeny.setVisibility(View.VISIBLE);
-//                    break;
-//                }
-//            }
-//        }
-//    }
-//
-//
-//    public void addData(JatekEredmeny jatekEredmeny){
-//        boolean adatBeszuras = mDatabase.addData(jatekEredmeny);
-//        if(adatBeszuras){
-//            //sikerült a beszúrás
-//        } else{
-//            //nem sikerült a beszúrás HIBA :(
-//        }
-//    }
-//
-//    public void goToEredmenyek(View view) {
-//        finish();
-//        Intent intent = new Intent(this, EredmenyekActivity.class);
-//        intent.putExtra("datum", jatekEredmeny.getDatum());
-//        intent.putExtra("szint", jatekEredmeny.getSzint());
-//        startActivity(intent);
-//    }
-//
-//
-//    public void goNextLevel(View view) {
-//        finish();
-//        Intent intent = new Intent(this, JatekActivity.class);
-//        int ujSzint = szint + 1;
-//        intent.putExtra("szint", ujSzint);
-//        intent.putExtra("jatekosNev", jatekosNev);
-//        startActivity(intent);
-//    }
-//}
 
 }

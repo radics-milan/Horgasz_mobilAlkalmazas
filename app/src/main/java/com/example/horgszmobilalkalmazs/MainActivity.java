@@ -18,7 +18,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-    DatabaseHal  databaseHal = new DatabaseHal(this);
+    DatabaseFish databaseFish = new DatabaseFish(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 boolean noConn = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
                 if (!noConn){
                     //ha van internet, akkor megpróbáljuk letölteni az adatokat a felhőből
-                    databaseHal.getAllDataFromFireStore();
+                    databaseFish.getAllDataFromFireStore();
                 }
             }
         }

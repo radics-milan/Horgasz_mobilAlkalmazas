@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FooldalFragment"
-    android:background="@drawable/background3">
+    tools:context=".FragmentMain"
+    android:background="@color/lightorange">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:background="@color/lightorange"
+            android:background="@color/yellow"
             app:drawableRightCompat="@drawable/ic_arrow_drop_down" />
 
         <ScrollView
@@ -60,7 +60,7 @@
         android:text="@string/horgasz_mobilalkalmazas_2022"
         android:textColor="@color/black"
         android:textAlignment="center"
-        android:background="@color/lightorange"
+        android:background="@color/yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

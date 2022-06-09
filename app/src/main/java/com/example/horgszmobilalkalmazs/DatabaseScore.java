@@ -41,9 +41,9 @@ public class DatabaseScore extends SQLiteOpenHelper {
         db.insert(TABLE_NAME, null, contentValues);
     }
 
-    public ArrayList<ClassScore> getAllData(){
+    public ArrayList<ClassScore> getScoresOnLevel(int level){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_NAME;
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COL2 + "=" + level;
         Cursor data = db.rawQuery(query, null);
         ArrayList<ClassScore> scoreArrayList = new ArrayList<>();
         if (data != null && data.moveToFirst()){
@@ -65,7 +65,31 @@ public class DatabaseScore extends SQLiteOpenHelper {
         return count != 0;
     }
 
-    public String getLastPlayersUsername(){
+    public String getLastPlayersUsername() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT MAX(DATE) FROM " + TABLE_NAME;
+        Cursor data = db.rawQuery(query, null);
+        if (data == null || data.getCount() == 0) {
+            return null;
+        } else {
+            data.moveToFirst();
+            String maxDate = data.getString(0);
+            data.close();
+
+            String query2 = "SELECT USERNAME FROM " + TABLE_NAME + " WHERE " + COL0 + "=" + "'" + maxDate + "'";
+            Cursor data2 = db.rawQuery(query2, null);
+            if (data2 == null || data2.getCount() == 0) {
+                return null;
+            } else {
+                data2.moveToFirst();
+                String username = data2.getString(0);
+                data2.close();
+                return username;
+            }
+        }
+    }
+
+    public String getLastGamesDate(){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT MAX(DATE) FROM " + TABLE_NAME;
         Cursor data = db.rawQuery(query, null);
@@ -75,21 +99,7 @@ public class DatabaseScore extends SQLiteOpenHelper {
             data.moveToFirst();
             String maxDate = data.getString(0);
             data.close();
-
-            String query2 = "SELECT USERNAME FROM " + TABLE_NAME  + " WHERE " + COL0 + "=" +"'"+maxDate+"'";
-            Cursor data2 = db.rawQuery(query2, null);
-            if (data2 == null || data2.getCount() == 0){
-                return null;
-            } else {
-                data2.moveToFirst();
-                String username = data2.getString(0);
-                data2.close();
-                return username;
-            }
-
+            return maxDate;
         }
-
-
-
     }
 }

@@ -19,7 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import java.util.ArrayList;
 
-public class HalakFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+public class FragmentFish extends Fragment implements AdapterView.OnItemSelectedListener {
     private int gridNumber = 1;
     private final String[] filterNames = {
             "Minden faj",
@@ -29,10 +29,10 @@ public class HalakFragment extends Fragment implements AdapterView.OnItemSelecte
             "Idegenhonos, invazív faj",
             "Védett faj"
     };
-    AdapterHal adapterHal;
-    ArrayList<ClassHal> fishArray = new ArrayList<>();
+    AdapterFish adapterFish;
+    ArrayList<ClassFish> fishArray = new ArrayList<>();
     RecyclerView recyclerView;
-    DatabaseHal databaseHal;
+    DatabaseFish databaseFish;
     String filter = null;
     View view;
 
@@ -47,13 +47,13 @@ public class HalakFragment extends Fragment implements AdapterView.OnItemSelecte
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_halak, container, false);
+        view = inflater.inflate(R.layout.fragment_fish, container, false);
 
         if (savedInstanceState != null){
             gridNumber = savedInstanceState.getInt("gridNumber");
         }
 
-        databaseHal = new DatabaseHal(view.getContext());
+        databaseFish = new DatabaseFish(view.getContext());
         ImageView imageView = view.findViewById(R.id.eyeImageView);
         imageView.setOnClickListener(v -> onEyeImageViewClick());
 
@@ -67,22 +67,22 @@ public class HalakFragment extends Fragment implements AdapterView.OnItemSelecte
 
         recyclerView = view.findViewById(R.id.fishRecyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), gridNumber));
-        adapterHal = new AdapterHal(getActivity(), fishArray, gridNumber);
-        recyclerView.setAdapter(adapterHal);
+        adapterFish = new AdapterFish(getActivity(), fishArray, gridNumber);
+        recyclerView.setAdapter(adapterFish);
 
         SearchView searchView = view.findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 Toast.makeText(view.getContext(), "Keresés: " + s, Toast.LENGTH_SHORT).show();
-                adapterHal.getFilter().filter(s);
+                adapterFish.getFilter().filter(s);
                 filter = s;
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                adapterHal.getFilter().filter(s);
+                adapterFish.getFilter().filter(s);
                 filter = s;
                 return false;
             }
@@ -95,12 +95,12 @@ public class HalakFragment extends Fragment implements AdapterView.OnItemSelecte
         if (gridNumber > 3) {
             gridNumber = 1;
         }
-        adapterHal = new AdapterHal(getActivity(), fishArray, gridNumber);
-        recyclerView.setAdapter(adapterHal);
+        adapterFish = new AdapterFish(getActivity(), fishArray, gridNumber);
+        recyclerView.setAdapter(adapterFish);
         GridLayoutManager layoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
         assert layoutManager != null;
         layoutManager.setSpanCount(gridNumber);
-        adapterHal.getFilter().filter(filter);
+        adapterFish.getFilter().filter(filter);
     }
 
     @Override
@@ -115,30 +115,30 @@ public class HalakFragment extends Fragment implements AdapterView.OnItemSelecte
         switch (adapterView.getItemAtPosition(i).toString()){
             case "Minden faj":
                 fishArray.clear();
-                fishArray.addAll(databaseHal.getAllDataFromLocalStore());
+                fishArray.addAll(databaseFish.getAllDataFromLocalStore());
                 break;
             case "Őshonos, fogható faj":
                 fishArray.clear();
-                fishArray.addAll(databaseHal.getOshonosFoghatoFajok());
+                fishArray.addAll(databaseFish.getOshonosFoghatoFajok());
                 break;
             case "Őshonos, időszakos felmentéssel fogható faj":
                 fishArray.clear();
-                fishArray.addAll(databaseHal.getOshonosIdoszakosFelmentesselFoghatoFajok());
+                fishArray.addAll(databaseFish.getOshonosIdoszakosFelmentesselFoghatoFajok());
                 break;
             case "Idegenhonos faj":
                 fishArray.clear();
-                fishArray.addAll(databaseHal.getIdegenhonosFajok());
+                fishArray.addAll(databaseFish.getIdegenhonosFajok());
                 break;
             case "Idegenhonos, invazív faj":
                 fishArray.clear();
-                fishArray.addAll(databaseHal.getIdegenhonosInvazivFajok());
+                fishArray.addAll(databaseFish.getIdegenhonosInvazivFajok());
                 break;
             case "Védett faj":
                 fishArray.clear();
-                fishArray.addAll(databaseHal.getVedettFajok());
+                fishArray.addAll(databaseFish.getVedettFajok());
                 break;
         }
-        adapterHal.notifyDataSetChanged();
+        adapterFish.notifyDataSetChanged();
         Toast.makeText(getActivity(), adapterView.getItemAtPosition(i).toString(), Toast.LENGTH_SHORT).show();
     }
 

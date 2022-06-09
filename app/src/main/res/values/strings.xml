@@ -35,4 +35,10 @@
     <string name="_10_szint">10. szint</string>
     <string name="kovetkezo_szint">Következő szint</string>
     <string name="ujra">Újra</string>
+    <string name="latin_nev">Latin név:</string>
+    <string name="tipus">Típus:</string>
+    <string name="legkisebb_kifoghato_meret">Legkisebb kifogható méret:</string>
+    <string name="tilalmi_idoszakban">Tilalmi időszakban:</string>
+    <string name="tilalmi_idoszak">Tilalmi időszak:</string>
+    <string name="icon">icon</string>
 </resources>

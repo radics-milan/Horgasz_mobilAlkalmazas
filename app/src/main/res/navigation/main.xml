@@ -7,32 +7,32 @@
 
     <fragment
         android:id="@+id/fooldalMenu"
-        android:name="com.example.horgszmobilalkalmazs.FooldalFragment"
+        android:name="com.example.horgszmobilalkalmazs.FragmentMain"
         android:label="@string/fooldal"
-        tools:layout="@layout/fragment_fooldal" />
+        tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/halakMenu"
-        android:name="com.example.horgszmobilalkalmazs.HalakFragment"
+        android:name="com.example.horgszmobilalkalmazs.FragmentFish"
         android:label="@string/halak"
-        tools:layout="@layout/fragment_halak" />
+        tools:layout="@layout/fragment_fish" />
     <fragment
         android:id="@+id/jatekMenu"
-        android:name="com.example.horgszmobilalkalmazs.JatekFragment"
+        android:name="com.example.horgszmobilalkalmazs.FragmentGame"
         android:label="@string/jatek"
-        tools:layout="@layout/fragment_jatek" />
+        tools:layout="@layout/fragment_game" />
     <fragment
         android:id="@+id/eredmenyekMenu"
-        android:name="com.example.horgszmobilalkalmazs.EredmenyekFragment"
+        android:name="com.example.horgszmobilalkalmazs.FragmentScores"
         android:label="@string/eredmenyek"
-        tools:layout="@layout/fragment_eredmenyek" />
+        tools:layout="@layout/fragment_scores" />
     <fragment
         android:id="@+id/fogasokMenu"
-        android:name="com.example.horgszmobilalkalmazs.FogasokFragment"
+        android:name="com.example.horgszmobilalkalmazs.FragmentCatches"
         android:label="@string/fogasok"
-        tools:layout="@layout/fragment_fogasok" />
+        tools:layout="@layout/fragment_catches" />
     <fragment
         android:id="@+id/informaciosMenu"
-        android:name="com.example.horgszmobilalkalmazs.InformacioFragment"
+        android:name="com.example.horgszmobilalkalmazs.FragmentInformation"
         android:label="@string/informacio"
-        tools:layout="@layout/fragment_informacio" />
+        tools:layout="@layout/fragment_information" />
 </navigation>

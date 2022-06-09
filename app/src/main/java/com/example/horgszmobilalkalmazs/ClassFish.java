@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class ClassHal {
+public class ClassFish {
     private String nev;
     private String latinNev;
     private int imageResourceId;
@@ -14,7 +14,7 @@ public class ClassHal {
     private int legkisebbKifoghatoMeretTilalmiIdoszakban;
     private String leiras;
 
-    public ClassHal(String nev, String latinNev, int imageResourceId, String tipus, String tilalmiIdoszak, int legkisebbKifoghatoMeret, int legkisebbKifoghatoMeretTilalmiIdoszakban, String leiras) {
+    public ClassFish(String nev, String latinNev, int imageResourceId, String tipus, String tilalmiIdoszak, int legkisebbKifoghatoMeret, int legkisebbKifoghatoMeretTilalmiIdoszakban, String leiras) {
         this.nev = nev;
         this.latinNev = latinNev;
         this.imageResourceId = imageResourceId;
@@ -25,7 +25,7 @@ public class ClassHal {
         this.leiras = leiras;
     }
 
-    public ClassHal(){
+    public ClassFish(){
         //Firestore letöltéshez kell üres konstruktor
     }
 
