@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class DatabaseScore extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "SCORE_TABLE";
@@ -53,6 +54,17 @@ public class DatabaseScore extends SQLiteOpenHelper {
         }
         assert data != null;
         data.close();
+
+        Collections.sort(scoreArrayList, (o1, o2) -> {
+            if(o1.getPoints() == o2.getPoints())
+                return 0;
+            return o1.getPoints() < o2.getPoints() ? 1 : -1;
+        });
+
+        for (int i = 0; i < scoreArrayList.size(); i++) {
+            scoreArrayList.get(i).setPositionIndex(i+1);
+        }
+
         return scoreArrayList;
     }
 
@@ -86,20 +98,6 @@ public class DatabaseScore extends SQLiteOpenHelper {
                 data2.close();
                 return username;
             }
-        }
-    }
-
-    public String getLastGamesDate(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT MAX(DATE) FROM " + TABLE_NAME;
-        Cursor data = db.rawQuery(query, null);
-        if (data == null || data.getCount() == 0){
-            return null;
-        } else {
-            data.moveToFirst();
-            String maxDate = data.getString(0);
-            data.close();
-            return maxDate;
         }
     }
 }

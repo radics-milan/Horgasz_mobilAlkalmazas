@@ -248,7 +248,6 @@ public class GameActivity extends AppCompatActivity {
     private void showScores() {
         finish();
         Intent intent = new Intent(this, ScoresActivity.class);
-        String date = databaseScore.getLastGamesDate();
         intent.putExtra("date", date);
         intent.putExtra("level", level);
         startActivity(intent);

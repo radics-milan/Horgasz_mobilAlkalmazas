@@ -7,6 +7,7 @@ public class ClassScore {
     int points;
     int level;
     String username;
+    int positionIndex = 0;
 
     public ClassScore(String date, int points, int level, String username) {
         this.date = date;
@@ -46,5 +47,13 @@ public class ClassScore {
         }
 
         return str;
+    }
+
+    public int getPositionIndex() {
+        return positionIndex;
+    }
+
+    public void setPositionIndex(int positionIndex) {
+        this.positionIndex = positionIndex;
     }
 }

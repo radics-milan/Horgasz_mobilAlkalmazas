@@ -37,17 +37,15 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/scoreTextView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/scoreRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
-        android:textAlignment="center"/>
+        android:background="@color/lightorange"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
