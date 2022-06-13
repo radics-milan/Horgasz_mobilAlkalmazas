@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import java.util.ArrayList;
 
 public class FragmentFish extends Fragment implements AdapterView.OnItemSelectedListener {
@@ -49,7 +50,7 @@ public class FragmentFish extends Fragment implements AdapterView.OnItemSelected
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_fish, container, false);
 
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             gridNumber = savedInstanceState.getInt("gridNumber");
         }
 
@@ -112,7 +113,7 @@ public class FragmentFish extends Fragment implements AdapterView.OnItemSelected
     @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        switch (adapterView.getItemAtPosition(i).toString()){
+        switch (adapterView.getItemAtPosition(i).toString()) {
             case "Minden faj":
                 fishArray.clear();
                 fishArray.addAll(databaseFish.getAllDataFromLocalStore());

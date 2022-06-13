@@ -16,8 +16,8 @@ public class DatabaseScore extends SQLiteOpenHelper {
     private static final String COL2 = "LEVEL";
     private static final String COL3 = "USERNAME";
 
-    public DatabaseScore(Context context){
-        super(context, TABLE_NAME, null,  1);
+    public DatabaseScore(Context context) {
+        super(context, TABLE_NAME, null, 1);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class DatabaseScore extends SQLiteOpenHelper {
 
     }
 
-    public void addData(ClassScore score){
+    public void addData(ClassScore score) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL0, score.getDate());
@@ -42,12 +42,12 @@ public class DatabaseScore extends SQLiteOpenHelper {
         db.insert(TABLE_NAME, null, contentValues);
     }
 
-    public ArrayList<ClassScore> getScoresOnLevel(int level){
+    public ArrayList<ClassScore> getScoresOnLevel(int level) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COL2 + "=" + level;
         Cursor data = db.rawQuery(query, null);
         ArrayList<ClassScore> scoreArrayList = new ArrayList<>();
-        if (data != null && data.moveToFirst()){
+        if (data != null && data.moveToFirst()) {
             do {
                 scoreArrayList.add(new ClassScore(data.getString(0), data.getInt(1), data.getInt(2), data.getString(3)));
             } while (data.moveToNext());
@@ -56,21 +56,21 @@ public class DatabaseScore extends SQLiteOpenHelper {
         data.close();
 
         Collections.sort(scoreArrayList, (o1, o2) -> {
-            if(o1.getPoints() == o2.getPoints())
+            if (o1.getPoints() == o2.getPoints())
                 return 0;
             return o1.getPoints() < o2.getPoints() ? 1 : -1;
         });
 
         for (int i = 0; i < scoreArrayList.size(); i++) {
-            scoreArrayList.get(i).setPositionIndex(i+1);
+            scoreArrayList.get(i).setPositionIndex(i + 1);
         }
 
         return scoreArrayList;
     }
 
-    public boolean isLevelCompleted(int level){
+    public boolean isLevelCompleted(int level) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_NAME  + " WHERE " + COL2 + "=" + level + " AND " + COL1 + "=" + 10;
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COL2 + "=" + level + " AND " + COL1 + "=" + 10;
         Cursor data = db.rawQuery(query, null);
         int count = data.getCount();
         data.close();

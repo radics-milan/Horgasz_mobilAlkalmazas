@@ -43,6 +43,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragmentHalakAppbar"
-        android:background="@color/lightorange"/>
+        android:background="@color/light_orange"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

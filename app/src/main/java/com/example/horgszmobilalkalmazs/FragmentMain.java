@@ -16,43 +16,35 @@ import java.util.Locale;
 
 public class FragmentMain extends Fragment {
     View view;
-    TextView todayDateTextView;
-    LinearLayout todayTilalmiIdoszakFishList;
-    TextView todayTilalmiIdoszakosHalakTextView;
-    DatabaseFish databaseFish;
-
-    boolean showTilalmiIdoszakosHalakList = true;
+    private LinearLayout todayCloseSeasonalFishLinearLayout;
+    private TextView todayCloseSeasonalFishTextView;
+    private DatabaseFish databaseFish;
+    private boolean showCloseSeasonalFish = true;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_main, container, false);
-
-
-        todayDateTextView = view.findViewById(R.id.maiDatum);
+        TextView todayDateTextView = view.findViewById(R.id.today_s_date_textView);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.", Locale.getDefault());
         todayDateTextView.setText(sdf.format(new Date()));
-
-        todayTilalmiIdoszakFishList = view.findViewById(R.id.tilalmiIdoszakosHalakLista);
-        todayTilalmiIdoszakosHalakTextView = view.findViewById(R.id.maiTilalmiIdoszakosHalakText);
-        todayTilalmiIdoszakosHalakTextView.setOnClickListener(o -> changeTilalmiIdoszakosHalakVisibility());
-
+        todayCloseSeasonalFishLinearLayout = view.findViewById(R.id.today_s_close_seasonal_fish_linearLayout);
+        todayCloseSeasonalFishTextView = view.findViewById(R.id.today_s_close_seasonal_fish_textView);
+        todayCloseSeasonalFishTextView.setOnClickListener(o -> changeVisibility());
         databaseFish = new DatabaseFish(getActivity());
         databaseFish.fillLocalStore();
-        showTilalmiIdoszakosHalak();
+        show();
 
         return view;
     }
 
-    private void changeTilalmiIdoszakosHalakVisibility(){
-        showTilalmiIdoszakosHalakList = !showTilalmiIdoszakosHalakList;
-        showTilalmiIdoszakosHalak();
+    private void changeVisibility(){
+        showCloseSeasonalFish = !showCloseSeasonalFish;
+        show();
     }
 
-    private void showTilalmiIdoszakosHalak() {
+    private void show() {
 
-        if (showTilalmiIdoszakosHalakList){
+        if (showCloseSeasonalFish){
             ArrayList<ClassFish> fish = databaseFish.getAllDataFromLocalStore();
             for (ClassFish hal: fish) {
                 if(hal.isTilalmiIdoszakToday()){
@@ -62,13 +54,13 @@ public class FragmentMain extends Fragment {
                     fishListItem.setTextColor(getResources().getColor(R.color.black));
                     fishListItem.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                     fishListItem.setOnClickListener(view -> onClickFish(hal.getNev()));
-                    todayTilalmiIdoszakFishList.addView(fishListItem);
-                    todayTilalmiIdoszakosHalakTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_up, 0);
+                    todayCloseSeasonalFishLinearLayout.addView(fishListItem);
+                    todayCloseSeasonalFishTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_up, 0);
                 }
             }
         } else {
-            todayTilalmiIdoszakFishList.removeAllViews();
-            todayTilalmiIdoszakosHalakTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_down, 0);
+            todayCloseSeasonalFishLinearLayout.removeAllViews();
+            todayCloseSeasonalFishTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_down, 0);
         }
     }
 

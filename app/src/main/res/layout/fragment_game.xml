@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/lightorange"
+    android:background="@color/light_orange"
     android:orientation="vertical">
     <ScrollView
         android:layout_width="match_parent"
@@ -58,24 +58,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/valassz_szintet"
+                android:text="@string/choose_level"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 />
 
             <Button
-                android:id="@+id/elsoSzintButton"
+                android:id="@+id/firstLevelButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/_1_szint"
+                android:text="@string/_1st_level"
                 android:layout_marginTop="5dp"/>
 
             <Button
-                android:id="@+id/masodikSzintButton"
+                android:id="@+id/secondLevelButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/_2_szint"
+                android:text="@string/_2nd_level"
                 android:layout_marginTop="5dp"
                 android:enabled="false"
                 android:drawableLeft="@drawable/ic_locked"
@@ -83,80 +83,80 @@
                 />
 
             <Button
-                android:id="@+id/harmadikSzintButton"
+                android:id="@+id/thirdLevelButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/_3_szint"
+                android:text="@string/_3rd_level"
                 android:layout_marginTop="5dp"
                 android:enabled="false"
                 android:drawableLeft="@drawable/ic_locked"
                 android:drawableRight="@drawable/ic_locked"/>
 
             <Button
-                android:id="@+id/negyedikSzintButton"
+                android:id="@+id/fourthLevelButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/_4_szint"
+                android:text="@string/_4th_level"
                 android:layout_marginTop="5dp"
                 android:enabled="false"
                 android:drawableLeft="@drawable/ic_locked"
                 android:drawableRight="@drawable/ic_locked"/>
 
             <Button
-                android:id="@+id/otodikSzintButton"
+                android:id="@+id/fifthLevelButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/_5_szint"
+                android:text="@string/_5th_level"
                 android:layout_marginTop="5dp"
                 android:enabled="false"
                 android:drawableLeft="@drawable/ic_locked"
                 android:drawableRight="@drawable/ic_locked"/>
 
             <Button
-                android:id="@+id/hatodikSzintButton"
+                android:id="@+id/sixthLevelButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/_6_szint"
+                android:text="@string/_6th_level"
                 android:layout_marginTop="5dp"
                 android:enabled="false"
                 android:drawableLeft="@drawable/ic_locked"
                 android:drawableRight="@drawable/ic_locked"/>
 
             <Button
-                android:id="@+id/hetedikSzintButton"
+                android:id="@+id/seventhButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/_7_szint"
+                android:text="@string/_7th_level"
                 android:layout_marginTop="5dp"
                 android:enabled="false"
                 android:drawableLeft="@drawable/ic_locked"
                 android:drawableRight="@drawable/ic_locked"/>
 
             <Button
-                android:id="@+id/nyolcadikSzintButton"
+                android:id="@+id/eighthLevelButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/_8_szint"
+                android:text="@string/_8th_level"
                 android:layout_marginTop="5dp"
                 android:enabled="false"
                 android:drawableLeft="@drawable/ic_locked"
                 android:drawableRight="@drawable/ic_locked"/>
 
             <Button
-                android:id="@+id/kilencedikSzintButton"
+                android:id="@+id/ninthLevelButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/_9_szint"
+                android:text="@string/_9th_level"
                 android:layout_marginTop="5dp"
                 android:enabled="false"
                 android:drawableLeft="@drawable/ic_locked"
                 android:drawableRight="@drawable/ic_locked"/>
 
             <Button
-                android:id="@+id/tizedikSzintButton"
+                android:id="@+id/tenthLevelButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/_10_szint"
+                android:text="@string/_10th_level"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="15dp"
                 android:enabled="false"

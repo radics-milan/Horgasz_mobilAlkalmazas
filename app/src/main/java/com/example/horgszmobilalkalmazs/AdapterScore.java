@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class AdapterScore extends RecyclerView.Adapter<AdapterScore.ViewHolder>{
+public class AdapterScore extends RecyclerView.Adapter<AdapterScore.ViewHolder> {
     Context context;
     ArrayList<ClassScore> scoreArrayList;
     String lastGamesDate;
@@ -42,9 +42,9 @@ public class AdapterScore extends RecyclerView.Adapter<AdapterScore.ViewHolder>{
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-         TextView scoreNumberTextView;
-         TextView scoreTextTextView;
-         HorizontalScrollView scoreHorizontalScrollView;
+        TextView scoreNumberTextView;
+        TextView scoreTextTextView;
+        HorizontalScrollView scoreHorizontalScrollView;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -54,7 +54,7 @@ public class AdapterScore extends RecyclerView.Adapter<AdapterScore.ViewHolder>{
         }
 
         public void bindTo(ClassScore score) {
-            if (i % 2 == 0){
+            if (i % 2 == 0) {
                 scoreHorizontalScrollView.setBackgroundColor(itemView.getResources().getColor(R.color.yellow));
             }
 

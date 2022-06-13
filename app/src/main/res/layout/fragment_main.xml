@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FragmentMain"
-    android:background="@color/lightorange">
+    android:background="@color/light_orange">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/maiDatum"
+            android:id="@+id/today_s_date_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
@@ -27,10 +27,10 @@
             android:textAlignment="center"/>
 
         <TextView
-            android:id="@+id/maiTilalmiIdoszakosHalakText"
+            android:id="@+id/today_s_close_seasonal_fish_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/mai_tilalmi_idoszakos_halak"
+            android:text="@string/today_s_close_seasonal_fish"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/tilalmiIdoszakosHalakLista"
+                android:id="@+id/today_s_close_seasonal_fish_linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="20sp"
-        android:text="@string/horgasz_mobilalkalmazas_2022"
+        android:text="@string/footer_text"
         android:textColor="@color/black"
         android:textAlignment="center"
         android:background="@color/yellow"

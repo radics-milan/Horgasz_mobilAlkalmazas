@@ -29,7 +29,7 @@ public class FishDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fish_details);
 
         String fishName = getIntent().getStringExtra("fishName");
-        if (fishName == null){
+        if (fishName == null) {
             finish();
         }
 
@@ -54,21 +54,23 @@ public class FishDetailsActivity extends AppCompatActivity {
         fishLatinNameTextView.setText(fish.getLatinNev());
         fishTypeTextView.setText(fish.getTipus());
 
-        if (fish.getLegkisebbKifoghatoMeret() == 0){
+        if (fish.getLegkisebbKifoghatoMeret() == 0) {
             fishMinimumCatchSizeLinearLayout.setVisibility(View.GONE);
         } else {
-            fishMinimumCatchSizeTextView.setText(fish.getLegkisebbKifoghatoMeret() + " cm");
+            String fishMinimumCatchSizeText = fish.getLegkisebbKifoghatoMeret() + " cm";
+            fishMinimumCatchSizeTextView.setText(fishMinimumCatchSizeText);
         }
 
-        if (fish.getLegkisebbKifoghatoMeretTilalmiIdoszakban() == 0){
+        if (fish.getLegkisebbKifoghatoMeretTilalmiIdoszakban() == 0) {
             fishMinimumCatchSizeInCloseSeasonLinearLayout.setVisibility(View.GONE);
         } else {
-            fishMinimumCatchSizeInCloseSeasonTextView.setText(fish.getLegkisebbKifoghatoMeretTilalmiIdoszakban() + " cm");
+            String fishMinimumCatchSizeInCloseSeasonText = fish.getLegkisebbKifoghatoMeretTilalmiIdoszakban() + " cm";
+            fishMinimumCatchSizeInCloseSeasonTextView.setText(fishMinimumCatchSizeInCloseSeasonText);
         }
 
-        if (fish.getTilalmiIdoszak() == null){
+        if (fish.getTilalmiIdoszak() == null) {
             fishCloseSeasonLinearLayout.setVisibility(View.GONE);
-        }  else {
+        } else {
             fishCloseSeasonTextView.setText(fish.getTilalmiIdoszak());
         }
 

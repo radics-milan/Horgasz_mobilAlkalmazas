@@ -54,7 +54,7 @@ public class AdapterFish extends RecyclerView.Adapter<AdapterFish.ViewHolder> im
         return filteredFishArray.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView nameTextView;
         TextView latinNameTextView;
         ImageView fishImageImageView;
@@ -62,7 +62,6 @@ public class AdapterFish extends RecyclerView.Adapter<AdapterFish.ViewHolder> im
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             nameTextView = itemView.findViewById(R.id.fishName);
             latinNameTextView = itemView.findViewById(R.id.fishLatinName);
             fishImageImageView = itemView.findViewById(R.id.fishImage);
@@ -75,7 +74,7 @@ public class AdapterFish extends RecyclerView.Adapter<AdapterFish.ViewHolder> im
             fishImageImageView.setImageResource(currentFish.getImageResourceId());
             fishDetailsButton.setOnClickListener(o -> onFishDetailsButtonClick(currentFish.getNev()));
 
-            switch (gridNumber){
+            switch (gridNumber) {
                 case 1:
                     nameTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
                     latinNameTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
@@ -94,7 +93,7 @@ public class AdapterFish extends RecyclerView.Adapter<AdapterFish.ViewHolder> im
             }
         }
 
-        public void onFishDetailsButtonClick(String name){
+        public void onFishDetailsButtonClick(String name) {
             Intent intent = new Intent(context, FishDetailsActivity.class);
             intent.putExtra("fishName", name);
             context.startActivity(intent);
@@ -102,22 +101,24 @@ public class AdapterFish extends RecyclerView.Adapter<AdapterFish.ViewHolder> im
     }
 
     @Override
-    public Filter getFilter(){return fishFilter;}
+    public Filter getFilter() {
+        return fishFilter;
+    }
 
     private final Filter fishFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
             ArrayList<ClassFish> filteredList = new ArrayList<>();
             FilterResults results = new FilterResults();
-            if(charSequence == null || charSequence.length() == 0){
+            if (charSequence == null || charSequence.length() == 0) {
                 results.count = originalFishArray.size();
                 results.values = originalFishArray;
-            } else{
-                String filterPattern =  Normalizer.normalize(charSequence, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replaceAll("\\s", "");
-                for(ClassFish hal : originalFishArray){
+            } else {
+                String filterPattern = Normalizer.normalize(charSequence, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replaceAll("\\s", "");
+                for (ClassFish hal : originalFishArray) {
                     String halNev = Normalizer.normalize(hal.getNev(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replaceAll("\\s", "");
                     String halLatinNev = Normalizer.normalize(hal.getLatinNev(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replaceAll("\\s", "");
-                    if(halNev.contains(filterPattern) || halLatinNev.contains(filterPattern)){
+                    if (halNev.contains(filterPattern) || halLatinNev.contains(filterPattern)) {
                         filteredList.add(hal);
                     }
                 }
@@ -127,6 +128,7 @@ public class AdapterFish extends RecyclerView.Adapter<AdapterFish.ViewHolder> im
             return results;
         }
 
+        @SuppressWarnings("unchecked")
         @SuppressLint("NotifyDataSetChanged")
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults results) {

@@ -32,16 +32,16 @@ public class FragmentGame extends Fragment {
         databaseFish = new DatabaseFish(view.getContext());
         databaseScore = new DatabaseScore(view.getContext());
 
-        buttonArrayList.add(view.findViewById(R.id.elsoSzintButton));
-        buttonArrayList.add(view.findViewById(R.id.masodikSzintButton));
-        buttonArrayList.add(view.findViewById(R.id.harmadikSzintButton));
-        buttonArrayList.add(view.findViewById(R.id.negyedikSzintButton));
-        buttonArrayList.add(view.findViewById(R.id.otodikSzintButton));
-        buttonArrayList.add(view.findViewById(R.id.hatodikSzintButton));
-        buttonArrayList.add(view.findViewById(R.id.hetedikSzintButton));
-        buttonArrayList.add(view.findViewById(R.id.nyolcadikSzintButton));
-        buttonArrayList.add(view.findViewById(R.id.kilencedikSzintButton));
-        buttonArrayList.add(view.findViewById(R.id.tizedikSzintButton));
+        buttonArrayList.add(view.findViewById(R.id.firstLevelButton));
+        buttonArrayList.add(view.findViewById(R.id.secondLevelButton));
+        buttonArrayList.add(view.findViewById(R.id.thirdLevelButton));
+        buttonArrayList.add(view.findViewById(R.id.fourthLevelButton));
+        buttonArrayList.add(view.findViewById(R.id.fifthLevelButton));
+        buttonArrayList.add(view.findViewById(R.id.sixthLevelButton));
+        buttonArrayList.add(view.findViewById(R.id.seventhButton));
+        buttonArrayList.add(view.findViewById(R.id.eighthLevelButton));
+        buttonArrayList.add(view.findViewById(R.id.ninthLevelButton));
+        buttonArrayList.add(view.findViewById(R.id.tenthLevelButton));
 
         view.findViewById(R.id.saveUsernameButton).setOnClickListener(o -> saveUsername());
 
