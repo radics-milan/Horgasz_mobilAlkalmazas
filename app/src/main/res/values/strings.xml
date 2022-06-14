@@ -42,4 +42,11 @@
     <string name="tilalmi_idoszak">Tilalmi időszak:</string>
     <string name="icon">icon</string>
     <string name="filter">Szűrés</string>
+    <string name="date">Időpont:</string>
+    <string name="size">Méret:</string>
+    <string name="weight">Tömeg:</string>
+    <string name="bait">Csali:</string>
+    <string name="location">Hely:</string>
+    <string name="delete">Törlés</string>
+    <string name="add">Hozzáadás</string>
 </resources>

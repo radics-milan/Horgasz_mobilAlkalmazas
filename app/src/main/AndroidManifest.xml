@@ -18,6 +18,9 @@
         android:theme="@style/Theme.HorgászMobilalkalmazás"
         tools:targetApi="31">
         <activity
+            android:name=".AddCatchActivity"
+            android:exported="false" />
+        <activity
             android:name=".ScoresActivity"
             android:exported="false" />
         <activity
