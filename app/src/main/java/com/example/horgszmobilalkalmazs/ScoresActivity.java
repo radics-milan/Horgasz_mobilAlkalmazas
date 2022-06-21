@@ -44,5 +44,13 @@ public class ScoresActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.scoreRecyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
         recyclerView.setAdapter(adapterScore);
+        int pos = 0;
+        for (ClassScore score : new DatabaseScore(this).getScoresOnLevel(level)){
+            if(score.getDate().equals(lastGamesDate)){
+                recyclerView.smoothScrollToPosition(pos);
+                break;
+            }
+            pos++;
+        }
     }
 }

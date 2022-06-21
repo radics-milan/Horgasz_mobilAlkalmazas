@@ -302,7 +302,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/add/baseline_add_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/photo_camera/baseline_photo_camera_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -312,7 +312,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_add" />
+                            <entry key="outputName" value="ic_camera" />
                             <entry key="sourceFile" value="G:\Milan\Horgszmobilalkalmazs" />
                           </map>
                         </option>

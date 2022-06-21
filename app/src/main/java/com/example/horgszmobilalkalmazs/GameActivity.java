@@ -193,7 +193,7 @@ public class GameActivity extends AppCompatActivity {
         questionIndex++;
         if(level < 10){
             if (questionIndex < 10){
-                handler.postDelayed(r, 800);
+                handler.postDelayed(r, 100);
             } else {
                 gameOver();
             }

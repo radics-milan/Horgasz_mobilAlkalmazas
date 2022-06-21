@@ -25,7 +25,7 @@ public class DatabaseFish extends SQLiteOpenHelper {
     private static final String COL6 = "legkisebbKifoghatoMeretTilalmiIdoszakban";
     private static final String COL7 = "leiras";
     private final FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
-    CollectionReference mItems = mFirestore.collection("Halak");
+    CollectionReference mItems = mFirestore.collection("Fish");
 
     public DatabaseFish(@Nullable Context context) {
         super(context, TABLE_NAME, null, 1);

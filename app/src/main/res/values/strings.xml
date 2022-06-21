@@ -49,4 +49,17 @@
     <string name="location">Hely:</string>
     <string name="delete">Törlés</string>
     <string name="add">Hozzáadás</string>
+    <string name="insert_new_catch">Új fogás hozzáadása</string>
+    <string name="date_text">Dátum</string>
+    <string name="species">Faj</string>
+    <string name="size_cm">Méret (cm)</string>
+    <string name="add_size_text">Add meg a méretet cm-ben!</string>
+    <string name="weight_kg">Tömeg (kg)</string>
+    <string name="add_weight_text">Add meg a tömeget kg-ban!</string>
+    <string name="bait_text">Csali</string>
+    <string name="add_bait_text">Add meg a csalit!</string>
+    <string name="location_text">Helyszín</string>
+    <string name="add_location_text">Add meg a helyszínt!</string>
+    <string name="save">Mentés</string>
+    <string name="cancel">Mégsem</string>
 </resources>

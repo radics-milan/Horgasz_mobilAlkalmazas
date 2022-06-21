@@ -2,6 +2,7 @@ package com.example.horgszmobilalkalmazs;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.net.Uri;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -128,7 +129,7 @@ public class AdapterCatch extends RecyclerView.Adapter<AdapterCatch.ViewHolder> 
                     locationTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, (float) 6.6);
                     break;
             }
-            catchImageView.setImageResource(R.drawable.ponty);
+            catchImageView.setImageURI(Uri.parse(currentCatch.getImage()));
             catchNameTextView.setText(currentCatch.getFishName());
             catchDateTextView.setText(currentCatch.getDateOfCatch());
             String catchSizeText = currentCatch.getSize() + " cm";

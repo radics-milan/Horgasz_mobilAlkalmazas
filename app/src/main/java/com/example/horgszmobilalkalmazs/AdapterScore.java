@@ -16,7 +16,6 @@ public class AdapterScore extends RecyclerView.Adapter<AdapterScore.ViewHolder> 
     Context context;
     ArrayList<ClassScore> scoreArrayList;
     String lastGamesDate;
-    int i = 0;
 
     AdapterScore(Context context, ArrayList<ClassScore> scoreArrayList, String lastGamesDate) {
         this.context = context;
@@ -54,18 +53,18 @@ public class AdapterScore extends RecyclerView.Adapter<AdapterScore.ViewHolder> 
         }
 
         public void bindTo(ClassScore score) {
-            if (i % 2 == 0) {
+            if (score.getPositionIndex() % 2 == 0){
+                scoreHorizontalScrollView.setBackgroundColor(itemView.getResources().getColor(R.color.light_orange));
+            } else {
                 scoreHorizontalScrollView.setBackgroundColor(itemView.getResources().getColor(R.color.yellow));
             }
-
             if (score.getDate().equals(lastGamesDate)) {
-                scoreHorizontalScrollView.setBackgroundColor(itemView.getResources().getColor(R.color.orange));
+                scoreHorizontalScrollView.setBackgroundColor(itemView.getResources().getColor(R.color.red));
             }
             String scoreNumberText = score.getPositionIndex() + ".";
             scoreNumberTextView.setText(scoreNumberText);
             scoreTextTextView.setText(score.toString());
 
-            i++;
         }
     }
 }

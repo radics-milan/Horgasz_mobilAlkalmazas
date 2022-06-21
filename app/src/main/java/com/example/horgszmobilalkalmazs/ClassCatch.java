@@ -1,13 +1,13 @@
 package com.example.horgszmobilalkalmazs;
 
 public class ClassCatch {
-    private String dateOfCatch;
-    private String fishName;
-    private String image;
-    private int size;
-    private int weight;
-    private String bait;
-    private String location;
+    String dateOfCatch;
+    String fishName;
+    String image;
+    int size;
+    int weight;
+    String bait;
+    String location;
 
     public ClassCatch(String dateOfCatch, String fishName, String image, int size, int weight, String bait, String location) {
         this.dateOfCatch = dateOfCatch;

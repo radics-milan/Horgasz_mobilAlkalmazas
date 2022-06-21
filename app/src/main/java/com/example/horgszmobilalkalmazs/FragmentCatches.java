@@ -3,13 +3,10 @@ package com.example.horgszmobilalkalmazs;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,12 +28,22 @@ public class FragmentCatches extends Fragment implements AdapterView.OnItemSelec
     RecyclerView catchesRecyclerView;
     ImageView eyeImageView;
     ImageView addImageView;
+    Spinner catchesSpinner;
 
+    @SuppressLint("NotifyDataSetChanged")
+    @Override
+    public void onStart() {
+        super.onStart();
+        databaseCatch = new DatabaseCatch(getContext());
+        catchArray.clear();
+        catchArray.addAll(databaseCatch.getAllCatch());
+        adapterCatch.notifyDataSetChanged();
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_catches, container, false);
-        Spinner catchesSpinner = view.findViewById(R.id.catches_spinner);
+        catchesSpinner = view.findViewById(R.id.catches_spinner);
         eyeImageView = view.findViewById(R.id.eyeImageView);
         eyeImageView.setOnClickListener(o -> onEyeImageViewClick());
         addImageView = view.findViewById(R.id.addImageView);
@@ -44,34 +51,19 @@ public class FragmentCatches extends Fragment implements AdapterView.OnItemSelec
         DatabaseFish databaseFish = new DatabaseFish(getContext());
         ArrayList<ClassFish> fishArrayList = databaseFish.getAllDataFromLocalStore();
 
-
         filterNames.add("Összes fogás");
         for (ClassFish fish: fishArrayList) {
             filterNames.add(fish.getNev());
         }
 
-        databaseCatch = new DatabaseCatch(getContext());
-//        databaseCatch.addCatch(new ClassCatch("2022.01.01.", "Angolna", "ASD", 20, 10, "Csalii", "Kecel"));
-//        databaseCatch.addCatch(new ClassCatch("2022.01.02.", "Angolna", "ASD", 20, 10, "Csalii", "Kecel"));
-//        databaseCatch.addCatch(new ClassCatch("2022.01.03.", "Angolna", "ASD", 20, 10, "Csalii", "Kecel"));
-//        databaseCatch.addCatch(new ClassCatch("2022.01.04.", "Angolna", "ASD", 20, 10, "Csalii", "Kecel"));
-//        databaseCatch.addCatch(new ClassCatch("2022.01.05.", "Angolna", "ASD", 20, 10, "Csalii", "Kecel"));
-//        databaseCatch.addCatch(new ClassCatch("2022.01.06.", "Angolna", "ASD", 20, 10, "Csalii", "Kecel"));
-//        databaseCatch.addCatch(new ClassCatch("2022.01.07.", "Angolna", "ASD", 20, 10, "Csalii", "Kecel"));
-//        databaseCatch.addCatch(new ClassCatch("2022.01.08.", "Angolna", "ASD", 20, 10, "Csalii", "Kecel"));
-//        databaseCatch.addCatch(new ClassCatch("2022.01.09.", "Angolna", "ASD", 20, 10, "Csalii", "Kecel"));
-
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, filterNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         catchesSpinner.setAdapter(adapter);
-        catchesSpinner.setSelection(0);
         catchesSpinner.setOnItemSelectedListener(this);
-
         catchesRecyclerView = view.findViewById(R.id.catches_recyclerView);
         catchesRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), gridNumber));
         adapterCatch = new AdapterCatch(getActivity(), catchArray, gridNumber);
         catchesRecyclerView.setAdapter(adapterCatch);
-
         return view;
     }
 
@@ -86,7 +78,6 @@ public class FragmentCatches extends Fragment implements AdapterView.OnItemSelec
         if (adapterView.getItemAtPosition(i).toString().equals(filterNames.get(0))){
             catchArray.clear();
             catchArray.addAll(databaseCatch.getAllCatch());
-            //Log.i(FragmentCatches.class.getName(), catchArray.get(0).getFishName());
         } else {
             catchArray.clear();
             catchArray.addAll(databaseCatch.getFishCatch(adapterView.getItemAtPosition(i).toString()));
@@ -105,7 +96,6 @@ public class FragmentCatches extends Fragment implements AdapterView.OnItemSelec
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 
     private void onEyeImageViewClick() {

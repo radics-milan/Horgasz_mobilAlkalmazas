@@ -99,16 +99,4 @@ public class ClassFish {
     public boolean isBiggerThanLegkisebbKifoghatoMeretTilalmiIdoszakban(int size){
         return size >= getLegkisebbKifoghatoMeretTilalmiIdoszakban();
     }
-
-    public boolean isVedett(){
-        return getTipus().contains("Védett");
-    }
-
-    public boolean isInvaziv(){
-        return getTipus().contains("Invazív");
-    }
-
-    public boolean isIdoszakosFelmentesselFoghato(){
-        return getTipus().contains("időszakos felmentéssel fogható");
-    }
 }
