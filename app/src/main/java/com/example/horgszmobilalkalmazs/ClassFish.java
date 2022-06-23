@@ -92,11 +92,11 @@ public class ClassFish {
         }
     }
 
-    public boolean isBiggerThanLegkisebbKifoghatoMeret(int size){
+    public boolean isBiggerThanLegkisebbKifoghatoMeret(float size){
         return size >= getLegkisebbKifoghatoMeret();
     }
 
-    public boolean isBiggerThanLegkisebbKifoghatoMeretTilalmiIdoszakban(int size){
+    public boolean isBiggerThanLegkisebbKifoghatoMeretTilalmiIdoszakban(float size){
         return size >= getLegkisebbKifoghatoMeretTilalmiIdoszakban();
     }
 }

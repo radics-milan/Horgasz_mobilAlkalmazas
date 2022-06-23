@@ -1,6 +1,8 @@
 package com.example.horgszmobilalkalmazs;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -21,15 +23,14 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -57,7 +58,7 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
     String catchName = null;
     String catchImage = null;
     int catchSize = 0;
-    int catchWeight = 0;
+    float catchWeight = 0;
     String catchBait = null;
     String catchLocation = null;
 
@@ -91,8 +92,7 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
         catchDateFlagTextView = findViewById(R.id.catchDateFlagTextView);
 
         sdf = new SimpleDateFormat("yyyy.MM.dd. HH:mm:ss", Locale.getDefault());
-        catchDate = sdf.format(new Date());
-        catchDateTextView.setText(catchDate);
+        catchDateTextView.setText( sdf.format(new Date()));
 
         catchDateTextView.setOnClickListener(o -> selectDate());
         cancelCatchButton.setOnClickListener(o -> finish());
@@ -210,14 +210,14 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
 
     private void saveCatch() {
         if (errors.size() == 0){
-
+            catchDate = catchDateTextView.getText().toString();
             catchImage = catchImageUri.toString();
             catchName = catchFish.getNev();
             if (!catchSizeEditText.getText().toString().equals("")){
                 catchSize = Integer.parseInt(catchSizeEditText.getText().toString());
             }
             if (!catchWeightEditText.getText().toString().equals("")){
-                catchWeight = Integer.parseInt(catchWeightEditText.getText().toString());
+                catchWeight = Float.parseFloat(catchWeightEditText.getText().toString());
             }
             if (!catchBaitEditText.getText().toString().equals("")){
                 catchBait = catchBaitEditText.getText().toString();
@@ -228,8 +228,7 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
             DatabaseCatch databaseCatch = new DatabaseCatch(this);
             databaseCatch.addCatch(new ClassCatch(catchDate, catchName, catchImage, catchSize, catchWeight, catchBait, catchLocation));
 
-            catchDate = sdf.format(new Date());
-            catchDateTextView.setText(catchDate);
+            catchDateTextView.setText(sdf.format(new Date()));
             catchImageView.setImageResource(R.drawable.ic_image);
             catchSizeEditText.setText("");
             catchWeightEditText.setText("");
@@ -255,7 +254,18 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
     }
 
     private void selectDate() {
-        //TODO dátum kiválasztást megcsinálni
+        Calendar date;
+        final Calendar currentDate = Calendar.getInstance();
+        date = Calendar.getInstance();
+        new DatePickerDialog(AddCatchActivity.this, (view, year, monthOfYear, dayOfMonth) -> {
+            date.set(year, monthOfYear, dayOfMonth);
+            new TimePickerDialog(AddCatchActivity.this, (view1, hourOfDay, minute) -> {
+                date.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                date.set(Calendar.MINUTE, minute);
+                catchDateTextView.setText(sdf.format(date.getTime()));
+            }, currentDate.get(Calendar.HOUR_OF_DAY), currentDate.get(Calendar.MINUTE), false).show();
+        }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE)).show();
+
     }
 
 

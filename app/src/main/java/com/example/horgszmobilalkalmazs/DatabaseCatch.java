@@ -26,7 +26,7 @@ public class DatabaseCatch extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (" + COL0 + " TEXT PRIMARY KEY, " + COL1 + " TEXT , " + COL2 + " TEXT, " + COL3 + " NUMERIC, " + COL4 + " NUMERIC, " + COL5 + " TEXT, " + COL6 + " TEXT " + ")";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " (" + COL0 + " TEXT PRIMARY KEY, " + COL1 + " TEXT , " + COL2 + " TEXT, " + COL3 + " NUMERIC, " + COL4 + " REAL, " + COL5 + " TEXT, " + COL6 + " TEXT " + ")";
         db.execSQL(createTable);
     }
 
@@ -56,7 +56,7 @@ public class DatabaseCatch extends SQLiteOpenHelper {
         ArrayList<ClassCatch> catchArrayList = new ArrayList<>();
         if (data != null && data.moveToFirst()){
             do {
-                catchArrayList.add(new ClassCatch(data.getString(0), data.getString(1), data.getString(2), data.getInt(3), data.getInt(4), data.getString(5), data.getString(6)));
+                catchArrayList.add(new ClassCatch(data.getString(0), data.getString(1), data.getString(2), data.getInt(3), data.getFloat(4), data.getString(5), data.getString(6)));
             } while (data.moveToNext());
         }
         assert data != null;
@@ -71,7 +71,7 @@ public class DatabaseCatch extends SQLiteOpenHelper {
         ArrayList<ClassCatch> catchArrayList = new ArrayList<>();
         if (data != null && data.moveToFirst()){
             do {
-                catchArrayList.add(new ClassCatch(data.getString(0), data.getString(1), data.getString(2), data.getInt(3), data.getInt(4), data.getString(5), data.getString(6)));
+                catchArrayList.add(new ClassCatch(data.getString(0), data.getString(1), data.getString(2), data.getInt(3), data.getFloat(4), data.getString(5), data.getString(6)));
             } while (data.moveToNext());
         }
         assert data != null;

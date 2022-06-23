@@ -38,6 +38,7 @@ public class GameActivity extends AppCompatActivity {
     String date;
     final Handler handler = new Handler();
     final Runnable r = this::playGame;
+    boolean isButtonClicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,6 +144,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private  void playGame(){
+        isButtonClicked = false;
         againButton.setVisibility(View.GONE);
         nextLevelButton.setVisibility(View.GONE);
         endButton.setVisibility(View.GONE);
@@ -175,6 +177,10 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void onAnswerButtonClick(Button button, String buttonText){
+        if (isButtonClicked){
+            return;
+        }
+        isButtonClicked = true; // to prevent multiple button click at the same time
         for (Button b: buttonArrayList) {
             b.setClickable(false);
         }
@@ -193,18 +199,17 @@ public class GameActivity extends AppCompatActivity {
         questionIndex++;
         if(level < 10){
             if (questionIndex < 10){
-                handler.postDelayed(r, 100);
+                handler.postDelayed(r, 500);
             } else {
                 gameOver();
             }
         } else {
             if (questionIndex < 82){
-                handler.postDelayed(r, 100);
+                handler.postDelayed(r, 500);
             } else {
                 gameOver();
             }
         }
-
     }
 
     private void playNextLevel() {

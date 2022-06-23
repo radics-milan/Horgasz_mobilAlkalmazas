@@ -5,11 +5,11 @@ public class ClassCatch {
     String fishName;
     String image;
     int size;
-    int weight;
+    float weight;
     String bait;
     String location;
 
-    public ClassCatch(String dateOfCatch, String fishName, String image, int size, int weight, String bait, String location) {
+    public ClassCatch(String dateOfCatch, String fishName, String image, int size, float weight, String bait, String location) {
         this.dateOfCatch = dateOfCatch;
         this.fishName = fishName;
         this.image = image;
@@ -35,7 +35,7 @@ public class ClassCatch {
         return size;
     }
 
-    public int getWeight() {
+    public float getWeight() {
         return weight;
     }
 

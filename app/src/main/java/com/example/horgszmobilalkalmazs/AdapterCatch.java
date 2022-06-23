@@ -12,8 +12,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 
 public class AdapterCatch extends RecyclerView.Adapter<AdapterCatch.ViewHolder> {
@@ -132,12 +134,38 @@ public class AdapterCatch extends RecyclerView.Adapter<AdapterCatch.ViewHolder> 
             catchImageView.setImageURI(Uri.parse(currentCatch.getImage()));
             catchNameTextView.setText(currentCatch.getFishName());
             catchDateTextView.setText(currentCatch.getDateOfCatch());
-            String catchSizeText = currentCatch.getSize() + " cm";
+            String catchSizeText;
+            if (currentCatch.getSize() == 0){
+                catchSizeText = "Ismeretlen";
+            } else {
+                catchSizeText = currentCatch.getSize() + " cm";
+            }
             catchSizeTextView.setText(catchSizeText);
-            String catchWeightText = currentCatch.getWeight() + " kg";
+
+            String catchWeightText;
+            if (currentCatch.getWeight() == 0){
+                catchWeightText = "Ismeretlen";
+            } else {
+                catchWeightText = currentCatch.getWeight() + " kg";
+            }
             catchWeightTextView.setText(catchWeightText);
-            catchBaitTextView.setText(currentCatch.getBait());
-            catchLocationTextView.setText(currentCatch.getLocation());
+
+            String catchBaitText;
+            if (currentCatch.getBait() == null){
+                catchBaitText= "Ismeretlen";
+            } else {
+                catchBaitText = currentCatch.getBait();
+            }
+            catchBaitTextView.setText(catchBaitText);
+
+            String catchLocationText;
+            if (currentCatch.getLocation() == null){
+                catchLocationText= "Ismeretlen";
+            } else {
+                catchLocationText = currentCatch.getLocation();
+            }
+            catchLocationTextView.setText(catchLocationText);
+
             catchDeleteButton.setOnClickListener(o -> onDeleteCatch(currentCatch.getDateOfCatch()) );
         }
 
