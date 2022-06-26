@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -39,6 +40,9 @@ public class ScoresActivity extends AppCompatActivity {
         backImageView.setOnClickListener(o -> finish());
 
         scoreArrayList = databaseScore.getScoresOnLevel(level);
+        if (scoreArrayList.size() == 0){
+            Toast.makeText(this, "Még nincs eredmény a(z) " + level + ". szinten!", Toast.LENGTH_SHORT).show();
+        }
         adapterScore = new AdapterScore(this, scoreArrayList, lastGamesDate);
 
         recyclerView = findViewById(R.id.scoreRecyclerView);

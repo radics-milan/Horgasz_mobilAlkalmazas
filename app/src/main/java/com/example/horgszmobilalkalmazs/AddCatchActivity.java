@@ -91,6 +91,10 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
         catchSizeFlagTextView = findViewById(R.id.catchSizeFlagTextView);
         catchDateFlagTextView = findViewById(R.id.catchDateFlagTextView);
 
+        if (savedInstanceState != null) {
+            catchImageUri =  Uri.parse(savedInstanceState.getString("image"));
+        }
+
         sdf = new SimpleDateFormat("yyyy.MM.dd. HH:mm:ss", Locale.getDefault());
         catchDateTextView.setText( sdf.format(new Date()));
 
@@ -111,7 +115,11 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
 
         selectPhotoImageView.setOnClickListener(o -> checkReadExternalStoragePermission());
         takePhotoImageView.setOnClickListener(o -> checkWriteExternalStoragePermission());
-        errors.add("Nincs kép kiválasztva!");
+
+        if (catchImageUri == null){
+            errors.add("Nincs kép kiválasztva!");
+        }
+
 
         catchSizeEditText.addTextChangedListener(new TextWatcher()
         {
@@ -149,6 +157,14 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
 
             public void onTextChanged(CharSequence s, int start, int before, int count){}
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (catchImageUri != null){
+            catchImageView.setImageURI(catchImageUri);
+        }
     }
 
     @Override
@@ -208,6 +224,15 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
         }
     }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (catchImageUri != null){
+            outState.putString("image", catchImageUri.toString());
+        }
+
+    }
+
     private void saveCatch() {
         if (errors.size() == 0){
             catchDate = catchDateTextView.getText().toString();
@@ -229,13 +254,12 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
             databaseCatch.addCatch(new ClassCatch(catchDate, catchName, catchImage, catchSize, catchWeight, catchBait, catchLocation));
 
             catchDateTextView.setText(sdf.format(new Date()));
-            catchImageView.setImageResource(R.drawable.ic_image);
             catchSizeEditText.setText("");
             catchWeightEditText.setText("");
             catchBaitEditText.setText("");
             catchLocationEditText.setText("");
             catchSpeciesSpinner.setSelection(0);
-            Toast.makeText(this, catchFish.getNev(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Sikeres hozzáadás! (" + catchName + ")", Toast.LENGTH_SHORT).show();
         } else {
             showErrors();
         }

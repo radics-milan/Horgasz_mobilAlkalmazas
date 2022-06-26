@@ -18,6 +18,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+
 import java.text.Normalizer;
 import java.util.ArrayList;
 
@@ -26,6 +33,8 @@ public class AdapterFish extends RecyclerView.Adapter<AdapterFish.ViewHolder> im
     ArrayList<ClassFish> originalFishArray;
     ArrayList<ClassFish> filteredFishArray;
     int gridNumber;
+    DisplayImageOptions options;
+    int defaultImage;
 
     public AdapterFish(Context context, ArrayList<ClassFish> fishArray, int gridNumber) {
         this.context = context;
@@ -37,6 +46,13 @@ public class AdapterFish extends RecyclerView.Adapter<AdapterFish.ViewHolder> im
     @NonNull
     @Override
     public AdapterFish.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        setupImageLoader();
+        defaultImage = context.getResources().getIdentifier("@drawable/amur", null, context.getPackageName());
+        options = new DisplayImageOptions.Builder().cacheInMemory(true)
+                .cacheOnDisk(true).resetViewBeforeLoading(true)
+                .showImageForEmptyUri(defaultImage)
+                .showImageOnFail(defaultImage)
+                .showImageOnLoading(defaultImage).build();
         return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.fish_list_item, parent, false));
     }
 
@@ -71,7 +87,9 @@ public class AdapterFish extends RecyclerView.Adapter<AdapterFish.ViewHolder> im
         public void bindTo(@NonNull ClassFish currentFish) {
             nameTextView.setText(currentFish.getNev());
             latinNameTextView.setText(currentFish.getLatinNev());
-            fishImageImageView.setImageResource(currentFish.getImageResourceId());
+
+            ImageLoader imageLoader = ImageLoader.getInstance();
+            imageLoader.displayImage("drawable://" + currentFish.getImageResourceId(), fishImageImageView, options);
             fishDetailsButton.setOnClickListener(o -> onFishDetailsButtonClick(currentFish.getNev()));
 
             switch (gridNumber) {
@@ -136,4 +154,19 @@ public class AdapterFish extends RecyclerView.Adapter<AdapterFish.ViewHolder> im
             notifyDataSetChanged();
         }
     };
+
+    private void setupImageLoader(){
+        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+                .cacheOnDisk(true).cacheInMemory(true)
+                .imageScaleType(ImageScaleType.EXACTLY)
+                .displayer(new FadeInBitmapDisplayer(300)).build();
+
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+                context)
+                .defaultDisplayImageOptions(defaultOptions)
+                .memoryCache(new WeakMemoryCache())
+                .diskCacheSize( 100 * 1024 * 1024).build();
+
+        ImageLoader.getInstance().init(config);
+    }
 }

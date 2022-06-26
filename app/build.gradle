@@ -49,4 +49,7 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
 
+    //Image Loader
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
 }

@@ -2,7 +2,6 @@ package com.example.horgszmobilalkalmazs;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.net.Uri;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +15,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+
 import java.util.ArrayList;
 
 public class AdapterCatch extends RecyclerView.Adapter<AdapterCatch.ViewHolder> {
     Context context;
     ArrayList<ClassCatch> catchArray;
     int gridNumber;
+    DisplayImageOptions options;
+    int defaultImage;
 
     public AdapterCatch(Context context, ArrayList<ClassCatch> catchArray, int gridNumber) {
         this.context = context;
@@ -32,6 +40,13 @@ public class AdapterCatch extends RecyclerView.Adapter<AdapterCatch.ViewHolder> 
     @NonNull
     @Override
     public AdapterCatch.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        setupImageLoader();
+        defaultImage = context.getResources().getIdentifier("@drawable/amur", null, context.getPackageName());
+        options = new DisplayImageOptions.Builder().cacheInMemory(true)
+                .cacheOnDisk(true).resetViewBeforeLoading(true)
+                .showImageForEmptyUri(defaultImage)
+                .showImageOnFail(defaultImage)
+                .showImageOnLoading(defaultImage).build();
         return new AdapterCatch.ViewHolder(LayoutInflater.from(context).inflate(R.layout.catch_list_item, parent, false));
     }
 
@@ -131,7 +146,10 @@ public class AdapterCatch extends RecyclerView.Adapter<AdapterCatch.ViewHolder> 
                     locationTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, (float) 6.6);
                     break;
             }
-            catchImageView.setImageURI(Uri.parse(currentCatch.getImage()));
+
+            ImageLoader imageLoader = ImageLoader.getInstance();
+            imageLoader.displayImage(currentCatch.getImage(), catchImageView, options);
+
             catchNameTextView.setText(currentCatch.getFishName());
             catchDateTextView.setText(currentCatch.getDateOfCatch());
             String catchSizeText;
@@ -180,4 +198,20 @@ public class AdapterCatch extends RecyclerView.Adapter<AdapterCatch.ViewHolder> 
             }
         }
     }
+
+    private void setupImageLoader(){
+        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+                .cacheOnDisk(true).cacheInMemory(true)
+                .imageScaleType(ImageScaleType.EXACTLY)
+                .displayer(new FadeInBitmapDisplayer(300)).build();
+
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+                context)
+                .defaultDisplayImageOptions(defaultOptions)
+                .memoryCache(new WeakMemoryCache())
+                .diskCacheSize( 100 * 1024 * 1024).build();
+
+        ImageLoader.getInstance().init(config);
+    }
+
 }

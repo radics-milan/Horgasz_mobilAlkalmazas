@@ -7,7 +7,7 @@
     <item
         android:id="@+id/halakMenu"
         android:title="@string/halak"
-        android:icon="@drawable/ic_fish2"/>
+        android:icon="@drawable/ic_fish"/>
 
     <item
         android:id="@+id/jatekMenu"

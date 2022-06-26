@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     titleImage.setImageResource(R.drawable.ic_home);
                     break;
                 case "Halak":
-                    titleImage.setImageResource(R.drawable.ic_fish2);
+                    titleImage.setImageResource(R.drawable.ic_fish);
                     break;
                 case "Játék":
                     titleImage.setImageResource(R.drawable.ic_game);
