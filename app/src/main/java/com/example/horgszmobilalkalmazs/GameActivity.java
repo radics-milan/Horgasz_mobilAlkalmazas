@@ -160,7 +160,7 @@ public class GameActivity extends AppCompatActivity {
         ArrayList<ClassFish> wrongAnswersArray = new ArrayList<>();
         while (wrongAnswersArray.size() != 3){
             int randomNumber = new Random().nextInt(fishArrayCopy.size());
-            if (!fishArrayCopy.get(randomNumber).getNev().equals(questionArray.get(questionIndex).getNev())){
+            if (!fishArrayCopy.get(randomNumber).getName().equals(questionArray.get(questionIndex).getName())){
                 wrongAnswersArray.add(fishArrayCopy.get(randomNumber));
                 fishArrayCopy.remove(randomNumber);
             }
@@ -170,10 +170,10 @@ public class GameActivity extends AppCompatActivity {
 
     private void handleAnswerButtons(ArrayList<ClassFish> wrongAnswersArray) {
         Collections.shuffle(buttonArrayList);
-        buttonArrayList.get(0).setText(questionArray.get(questionIndex).getNev());
-        buttonArrayList.get(1).setText(wrongAnswersArray.get(0).getNev());
-        buttonArrayList.get(2).setText(wrongAnswersArray.get(1).getNev());
-        buttonArrayList.get(3).setText(wrongAnswersArray.get(2).getNev());
+        buttonArrayList.get(0).setText(questionArray.get(questionIndex).getName());
+        buttonArrayList.get(1).setText(wrongAnswersArray.get(0).getName());
+        buttonArrayList.get(2).setText(wrongAnswersArray.get(1).getName());
+        buttonArrayList.get(3).setText(wrongAnswersArray.get(2).getName());
     }
 
     private void onAnswerButtonClick(Button button, String buttonText){
@@ -184,13 +184,13 @@ public class GameActivity extends AppCompatActivity {
         for (Button b: buttonArrayList) {
             b.setClickable(false);
         }
-        if (questionArray.get(questionIndex).getNev().equals(buttonText)){
+        if (questionArray.get(questionIndex).getName().equals(buttonText)){
             points++;
             button.setBackgroundColor(getResources().getColor(R.color.green));
         } else {
             button.setBackgroundColor(getResources().getColor(R.color.red));
             for (Button b: buttonArrayList) {
-                if (b.getText().toString().equals(questionArray.get(questionIndex).getNev())){
+                if (b.getText().toString().equals(questionArray.get(questionIndex).getName())){
                     b.setBackgroundColor(getResources().getColor(R.color.green));
                     break;
                 }

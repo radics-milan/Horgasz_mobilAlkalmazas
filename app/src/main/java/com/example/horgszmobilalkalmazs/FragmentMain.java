@@ -47,13 +47,13 @@ public class FragmentMain extends Fragment {
         if (showCloseSeasonalFish){
             ArrayList<ClassFish> fish = databaseFish.getAllDataFromLocalStore();
             for (ClassFish hal: fish) {
-                if(hal.isTilalmiIdoszakToday()){
+                if(hal.isCloseSeasonToday()){
                     TextView fishListItem = new TextView(getActivity());
-                    fishListItem.setText(hal.getNev());
+                    fishListItem.setText(hal.getName());
                     fishListItem.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                     fishListItem.setTextColor(getResources().getColor(R.color.black));
                     fishListItem.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                    fishListItem.setOnClickListener(view -> onClickFish(hal.getNev()));
+                    fishListItem.setOnClickListener(view -> onClickFish(hal.getName()));
                     todayCloseSeasonalFishLinearLayout.addView(fishListItem);
                     todayCloseSeasonalFishTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_up, 0);
                 }

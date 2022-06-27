@@ -104,7 +104,7 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
 
         filterNames.add("Válassz fajt!");
         for (ClassFish fish: new DatabaseFish(this).getAllDataFromLocalStore()) {
-            filterNames.add(fish.getNev());
+            filterNames.add(fish.getName());
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, filterNames);
@@ -132,17 +132,17 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
                 }
                 if (catchFish != null && !text.equals("") ){
                     int size = Integer.parseInt(text);
-                    if (!catchFish.isTilalmiIdoszakToday() && catchFish.getLegkisebbKifoghatoMeret() != 0){
-                        if (!catchFish.isBiggerThanLegkisebbKifoghatoMeret(size)){
-                            String catchSizeFlagText = "Méreten aluli (" + catchFish.getLegkisebbKifoghatoMeret() +" cm alatti) hal nem tartható meg!";
+                    if (!catchFish.isCloseSeasonToday() && catchFish.getMinimumCatchSize() != 0){
+                        if (!catchFish.isBiggerThanMinimumCatchSize(size)){
+                            String catchSizeFlagText = "Méreten aluli (" + catchFish.getMinimumCatchSize() +" cm alatti) hal nem tartható meg!";
                             catchSizeFlagTextView.setText(catchSizeFlagText);
                             catchSizeFlagTextView.setVisibility(View.VISIBLE);
                         } else {
                             catchSizeFlagTextView.setVisibility(View.GONE);
                         }
-                    } else if (catchFish.isTilalmiIdoszakToday() && catchFish.getLegkisebbKifoghatoMeretTilalmiIdoszakban() != 0){
-                        if (!catchFish.isBiggerThanLegkisebbKifoghatoMeretTilalmiIdoszakban(size)){
-                            String catchSizeFlagText = "Méreten aluli (" + catchFish.getLegkisebbKifoghatoMeretTilalmiIdoszakban() +" cm alatti) hal nem tartható meg!";
+                    } else if (catchFish.isCloseSeasonToday() && catchFish.getMinimumCatchSizeInCloseSeason() != 0){
+                        if (!catchFish.isBiggerThanMinimumCatchSizeInCloseSeason(size)){
+                            String catchSizeFlagText = "Méreten aluli (" + catchFish.getMinimumCatchSizeInCloseSeason() +" cm alatti) hal nem tartható meg!";
                             catchSizeFlagTextView.setText(catchSizeFlagText);
                             catchSizeFlagTextView.setVisibility(View.VISIBLE);
                         } else {
@@ -175,12 +175,12 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
             catchFish = new DatabaseFish(this).getHalByNev(adapterView.getItemAtPosition(i).toString());
             removeError("Nincs faj kiválasztva!");
 
-            if (catchFish.isTilalmiIdoszakToday()){
+            if (catchFish.isCloseSeasonToday()){
                 String catchDateFlagText;
-                if (catchFish.getNev().equals("Harcsa")){
-                    catchDateFlagText = catchFish.getNev() + " tilalmi időszak van! Csak a legalább 100 cm-es példány tartható meg!";
+                if (catchFish.getName().equals("Harcsa")){
+                    catchDateFlagText = catchFish.getName() + " tilalmi időszak van! Csak a legalább 100 cm-es példány tartható meg!";
                 } else {
-                    catchDateFlagText = catchFish.getNev() + " tilalmi időszak van! Tilos a megtartása!";
+                    catchDateFlagText = catchFish.getName() + " tilalmi időszak van! Tilos a megtartása!";
                 } catchDateFlagTextView.setText(catchDateFlagText);
                 catchDateFlagTextView.setVisibility(View.VISIBLE);
 
@@ -188,7 +188,7 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
                 catchDateFlagTextView.setVisibility(View.GONE);
             }
             String catchFlagText;
-            switch (catchFish.getTipus()){
+            switch (catchFish.getType()){
                 case "Őshonos, időszakos felmentéssel fogható faj":
                     catchFlagText = "A hal megtartásához engedély szükséges!";
                     catchFlagTextView.setText(catchFlagText);
@@ -237,7 +237,7 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
         if (errors.size() == 0){
             catchDate = catchDateTextView.getText().toString();
             catchImage = catchImageUri.toString();
-            catchName = catchFish.getNev();
+            catchName = catchFish.getName();
             if (!catchSizeEditText.getText().toString().equals("")){
                 catchSize = Integer.parseInt(catchSizeEditText.getText().toString());
             }

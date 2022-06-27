@@ -53,7 +53,7 @@ public class FragmentCatches extends Fragment implements AdapterView.OnItemSelec
 
         filterNames.add("Összes fogás");
         for (ClassFish fish: fishArrayList) {
-            filterNames.add(fish.getNev());
+            filterNames.add(fish.getName());
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, filterNames);

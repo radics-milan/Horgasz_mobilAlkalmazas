@@ -11,13 +11,13 @@
     <string name="eredmenyek">Eredmények</string>
     <string name="kilepes">Kilépés</string>
     <string name="today_s_close_seasonal_fish">Mai tilalmi időszakos halak</string>
-    <string name="reszletek">Részletek</string>
+    <string name="details">Részletek</string>
     <string name="nezet">Nézet</string>
     <string name="kereses">Keresés</string>
     <string name="szures">Szűrés</string>
     <string name="kep">Kép</string>
     <string name="footer_text">Horgász mobilalkalmazás 2022.</string>
-    <string name="vissza">Vissza</string>
+    <string name="back">Vissza</string>
     <string name="choose_level">Válassz szintet!</string>
     <string name="jatekosnev">Játékosnév</string>
     <string name="uj_jatekos">Új játékos</string>
@@ -35,11 +35,11 @@
     <string name="_10th_level">10. szint</string>
     <string name="kovetkezo_szint">Következő szint</string>
     <string name="ujra">Újra</string>
-    <string name="latin_nev">Latin név:</string>
-    <string name="tipus">Típus:</string>
-    <string name="legkisebb_kifoghato_meret">Legkisebb kifogható méret:</string>
-    <string name="tilalmi_idoszakban">Tilalmi időszakban:</string>
-    <string name="tilalmi_idoszak">Tilalmi időszak:</string>
+    <string name="latinName">Latin név:</string>
+    <string name="type">Típus:</string>
+    <string name="minimumCatchSize">Legkisebb kifogható méret:</string>
+    <string name="inCloseSeason">Tilalmi időszakban:</string>
+    <string name="closeSeason">Tilalmi időszak:</string>
     <string name="icon">icon</string>
     <string name="filter">Szűrés</string>
     <string name="date">Időpont:</string>
@@ -62,4 +62,15 @@
     <string name="add_location_text">Add meg a helyszínt!</string>
     <string name="save">Mentés</string>
     <string name="cancel">Mégsem</string>
+    <string name="information_description">Az alkalmazás a Szegedi Tudományegyetem diplomamunka céljából készült az Android Studioban, 2022-ben.\nKészítette: Radics Milán, mérnökinformatikus hallgató.\nTémavezető: Dr. Bilincki Vilmos.\nAz alkalmazás során felhasznált képek nem sajátok!\nKépek: Dr. Harka Ákos felvételei, Google.\nHalleírások: Nébih által ingyenesen elérhető horgászvizsgára való felkészülést segítő tankönyv, Wikipédia.\nTilalmi Időszakok: 2022. évi állami horgászjegy és fogási napló.</string>
+
+
+
+
+
+
+
+
+
+
 </resources>

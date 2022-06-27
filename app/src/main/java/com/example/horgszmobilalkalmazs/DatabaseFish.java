@@ -46,14 +46,14 @@ public class DatabaseFish extends SQLiteOpenHelper {
     public void addHalToLocalStore(@NonNull ClassFish hal){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues(8);
-        contentValues.put(COL0, hal.getNev());
-        contentValues.put(COL1, hal.getLatinNev());
+        contentValues.put(COL0, hal.getName());
+        contentValues.put(COL1, hal.getLatinName());
         contentValues.put(COL2, hal.getImageResourceId());
-        contentValues.put(COL3, hal.getTipus());
-        contentValues.put(COL4, hal.getTilalmiIdoszak());
-        contentValues.put(COL5, hal.getLegkisebbKifoghatoMeret());
-        contentValues.put(COL6, hal.getLegkisebbKifoghatoMeretTilalmiIdoszakban());
-        contentValues.put(COL7, hal.getLeiras());
+        contentValues.put(COL3, hal.getType());
+        contentValues.put(COL4, hal.getCloseSeason());
+        contentValues.put(COL5, hal.getMinimumCatchSize());
+        contentValues.put(COL6, hal.getMinimumCatchSizeInCloseSeason());
+        contentValues.put(COL7, hal.getDescription());
 
         db.insert(TABLE_NAME, null, contentValues);
     }
@@ -108,7 +108,7 @@ public class DatabaseFish extends SQLiteOpenHelper {
     public ClassFish getHalByNev(String nev){
         ArrayList<ClassFish> halak = getAllDataFromLocalStore();
         for (ClassFish hal: halak) {
-            if (hal.getNev().equals(nev)){
+            if (hal.getName().equals(nev)){
                 return hal;
             }
         }

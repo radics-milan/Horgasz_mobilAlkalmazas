@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:text="@string/reszletek"
+        android:text="@string/details"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:textSize="30sp" />

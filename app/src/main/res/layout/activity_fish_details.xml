@@ -21,7 +21,7 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_marginEnd="20dp"
-            android:contentDescription="@string/vissza"
+            android:contentDescription="@string/back"
             android:src="@drawable/ic_arrow_back" />
 
         <TextView
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/reszletek"
+            android:text="@string/details"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"/>
@@ -55,7 +55,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/lenai_tok"
                 android:contentDescription="@string/kep"/>
 
             <LinearLayout
@@ -66,7 +65,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/latin_nev"
+                    android:text="@string/latinName"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:layout_marginEnd="10dp"
@@ -76,7 +75,6 @@
                     android:id="@+id/fishLatinNameTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/hello_blank_fragment"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -89,7 +87,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tipus"
+                    android:text="@string/type"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:layout_marginEnd="10dp"
@@ -99,7 +97,6 @@
                     android:id="@+id/fishTypeTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/hello_blank_fragment"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -113,7 +110,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/legkisebb_kifoghato_meret"
+                    android:text="@string/minimumCatchSize"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:layout_marginEnd="10dp"
@@ -123,7 +120,6 @@
                     android:id="@+id/fishMinimumCatchSizeTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/hello_blank_fragment"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -137,7 +133,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tilalmi_idoszakban"
+                    android:text="@string/inCloseSeason"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:layout_marginEnd="10dp"
@@ -147,7 +143,6 @@
                     android:id="@+id/fishMinimumCatchSizeInCloseSeasonTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/hello_blank_fragment"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -161,7 +156,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tilalmi_idoszak"
+                    android:text="@string/closeSeason"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:layout_marginEnd="10dp"
@@ -171,7 +166,6 @@
                     android:id="@+id/fishCloseSeasonTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/hello_blank_fragment"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -180,7 +174,6 @@
                 android:id="@+id/fishDetailsTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/hello_blank_fragment"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:justificationMode="inter_word"

@@ -85,12 +85,12 @@ public class AdapterFish extends RecyclerView.Adapter<AdapterFish.ViewHolder> im
         }
 
         public void bindTo(@NonNull ClassFish currentFish) {
-            nameTextView.setText(currentFish.getNev());
-            latinNameTextView.setText(currentFish.getLatinNev());
+            nameTextView.setText(currentFish.getName());
+            latinNameTextView.setText(currentFish.getLatinName());
 
             ImageLoader imageLoader = ImageLoader.getInstance();
             imageLoader.displayImage("drawable://" + currentFish.getImageResourceId(), fishImageImageView, options);
-            fishDetailsButton.setOnClickListener(o -> onFishDetailsButtonClick(currentFish.getNev()));
+            fishDetailsButton.setOnClickListener(o -> onFishDetailsButtonClick(currentFish.getName()));
 
             switch (gridNumber) {
                 case 1:
@@ -134,8 +134,8 @@ public class AdapterFish extends RecyclerView.Adapter<AdapterFish.ViewHolder> im
             } else {
                 String filterPattern = Normalizer.normalize(charSequence, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replaceAll("\\s", "");
                 for (ClassFish hal : originalFishArray) {
-                    String halNev = Normalizer.normalize(hal.getNev(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replaceAll("\\s", "");
-                    String halLatinNev = Normalizer.normalize(hal.getLatinNev(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replaceAll("\\s", "");
+                    String halNev = Normalizer.normalize(hal.getName(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replaceAll("\\s", "");
+                    String halLatinNev = Normalizer.normalize(hal.getLatinName(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase().replaceAll("\\s", "");
                     if (halNev.contains(filterPattern) || halLatinNev.contains(filterPattern)) {
                         filteredList.add(hal);
                     }

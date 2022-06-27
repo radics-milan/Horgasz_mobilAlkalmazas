@@ -5,63 +5,63 @@ import java.util.Date;
 import java.util.Locale;
 
 public class ClassFish {
-    private String nev;
-    private String latinNev;
+    private String name;
+    private String latinName;
     private int imageResourceId;
-    private String tipus;
-    private String tilalmiIdoszak;
-    private int legkisebbKifoghatoMeret;
-    private int legkisebbKifoghatoMeretTilalmiIdoszakban;
-    private String leiras;
+    private String type;
+    private String closeSeason;
+    private int minimumCatchSize;
+    private int minimumCatchSizeInCloseSeason;
+    private String description;
 
-    public ClassFish(String nev, String latinNev, int imageResourceId, String tipus, String tilalmiIdoszak, int legkisebbKifoghatoMeret, int legkisebbKifoghatoMeretTilalmiIdoszakban, String leiras) {
-        this.nev = nev;
-        this.latinNev = latinNev;
+    public ClassFish(String name, String latinName, int imageResourceId, String type, String closeSeason, int minimumCatchSize, int minimumCatchSizeInCloseSeason, String description) {
+        this.name = name;
+        this.latinName = latinName;
         this.imageResourceId = imageResourceId;
-        this.tipus = tipus;
-        this.tilalmiIdoszak = tilalmiIdoszak;
-        this.legkisebbKifoghatoMeret = legkisebbKifoghatoMeret;
-        this.legkisebbKifoghatoMeretTilalmiIdoszakban = legkisebbKifoghatoMeretTilalmiIdoszakban;
-        this.leiras = leiras;
+        this.type = type;
+        this.closeSeason = closeSeason;
+        this.minimumCatchSize = minimumCatchSize;
+        this.minimumCatchSizeInCloseSeason = minimumCatchSizeInCloseSeason;
+        this.description = description;
     }
 
     public ClassFish(){
-        //Firestore letöltéshez kell üres konstruktor
+        //Firestore needs empty constructor
     }
 
-    public String getNev() {
-        return nev;
+    public String getName() {
+        return name;
     }
 
-    public String getLatinNev() {
-        return latinNev;
+    public String getLatinName() {
+        return latinName;
     }
 
     public int getImageResourceId() {
         return imageResourceId;
     }
 
-    public String getTipus() {
-        return tipus;
+    public String getType() {
+        return type;
     }
 
-    public String getTilalmiIdoszak() {
-        return tilalmiIdoszak;
+    public String getCloseSeason() {
+        return closeSeason;
     }
 
-    public int getLegkisebbKifoghatoMeret() {
-        return legkisebbKifoghatoMeret;
+    public int getMinimumCatchSize() {
+        return minimumCatchSize;
     }
 
-    public int getLegkisebbKifoghatoMeretTilalmiIdoszakban() {
-        return legkisebbKifoghatoMeretTilalmiIdoszakban;
+    public int getMinimumCatchSizeInCloseSeason() {
+        return minimumCatchSizeInCloseSeason;
     }
 
-    public String getLeiras() {
-        return leiras;
+    public String getDescription() {
+        return description;
     }
 
-    public boolean isTilalmiIdoszakToday() {
+    public boolean isCloseSeasonToday() {
         SimpleDateFormat sdf = new SimpleDateFormat("MM.dd.", Locale.getDefault());
         String today = sdf.format(new Date());
 
@@ -69,10 +69,10 @@ public class ClassFish {
         int currentMonth = Integer.parseInt(currentDateParts[0]);
         int currentDay = Integer.parseInt(currentDateParts[1]);
 
-        if (getTilalmiIdoszak() != null) {
-            String[] tilalmiIdoszakDateParts = getTilalmiIdoszak().split("-");
-            String startDate = tilalmiIdoszakDateParts[0];
-            String endDate = tilalmiIdoszakDateParts[1];
+        if (getCloseSeason() != null) {
+            String[] closeSeasonDateParts = getCloseSeason().split("-");
+            String startDate = closeSeasonDateParts[0];
+            String endDate = closeSeasonDateParts[1];
 
             String[] startDateParts = startDate.split("\\.");
             int startMonth = Integer.parseInt(startDateParts[0]);
@@ -92,11 +92,11 @@ public class ClassFish {
         }
     }
 
-    public boolean isBiggerThanLegkisebbKifoghatoMeret(float size){
-        return size >= getLegkisebbKifoghatoMeret();
+    public boolean isBiggerThanMinimumCatchSize(float size){
+        return size >= getMinimumCatchSize();
     }
 
-    public boolean isBiggerThanLegkisebbKifoghatoMeretTilalmiIdoszakban(float size){
-        return size >= getLegkisebbKifoghatoMeretTilalmiIdoszakban();
+    public boolean isBiggerThanMinimumCatchSizeInCloseSeason(float size){
+        return size >= getMinimumCatchSizeInCloseSeason();
     }
 }

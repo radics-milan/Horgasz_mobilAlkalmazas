@@ -49,31 +49,31 @@ public class FishDetailsActivity extends AppCompatActivity {
         fishMinimumCatchSizeInCloseSeasonLinearLayout = findViewById(R.id.fishMinimumCatchSizeInCloseSeasonLinearLayout);
         fishCloseSeasonLinearLayout = findViewById(R.id.fishCloseSeasonLinearLayout);
 
-        detailsHeaderTextView.setText(fish.getNev());
+        detailsHeaderTextView.setText(fish.getName());
         fishImageView.setImageResource(fish.getImageResourceId());
-        fishLatinNameTextView.setText(fish.getLatinNev());
-        fishTypeTextView.setText(fish.getTipus());
+        fishLatinNameTextView.setText(fish.getLatinName());
+        fishTypeTextView.setText(fish.getType());
 
-        if (fish.getLegkisebbKifoghatoMeret() == 0) {
+        if (fish.getMinimumCatchSize() == 0) {
             fishMinimumCatchSizeLinearLayout.setVisibility(View.GONE);
         } else {
-            String fishMinimumCatchSizeText = fish.getLegkisebbKifoghatoMeret() + " cm";
+            String fishMinimumCatchSizeText = fish.getMinimumCatchSize() + " cm";
             fishMinimumCatchSizeTextView.setText(fishMinimumCatchSizeText);
         }
 
-        if (fish.getLegkisebbKifoghatoMeretTilalmiIdoszakban() == 0) {
+        if (fish.getMinimumCatchSizeInCloseSeason() == 0) {
             fishMinimumCatchSizeInCloseSeasonLinearLayout.setVisibility(View.GONE);
         } else {
-            String fishMinimumCatchSizeInCloseSeasonText = fish.getLegkisebbKifoghatoMeretTilalmiIdoszakban() + " cm";
+            String fishMinimumCatchSizeInCloseSeasonText = fish.getMinimumCatchSizeInCloseSeason() + " cm";
             fishMinimumCatchSizeInCloseSeasonTextView.setText(fishMinimumCatchSizeInCloseSeasonText);
         }
 
-        if (fish.getTilalmiIdoszak() == null) {
+        if (fish.getCloseSeason() == null) {
             fishCloseSeasonLinearLayout.setVisibility(View.GONE);
         } else {
-            fishCloseSeasonTextView.setText(fish.getTilalmiIdoszak());
+            fishCloseSeasonTextView.setText(fish.getCloseSeason());
         }
 
-        fishDetailsTextView.setText(fish.getLeiras());
+        fishDetailsTextView.setText(fish.getDescription());
     }
 }
