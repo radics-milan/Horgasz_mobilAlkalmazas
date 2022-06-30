@@ -6,7 +6,6 @@
     <string name="fogasok">Fogások</string>
     <string name="informacio">Információ</string>
     <string name="menu">Menü</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="eredmenyek">Eredmények</string>
     <string name="kilepes">Kilépés</string>
@@ -62,15 +61,5 @@
     <string name="add_location_text">Add meg a helyszínt!</string>
     <string name="save">Mentés</string>
     <string name="cancel">Mégsem</string>
-    <string name="information_description">Az alkalmazás a Szegedi Tudományegyetem diplomamunka céljából készült az Android Studioban, 2022-ben.\nKészítette: Radics Milán, mérnökinformatikus hallgató.\nTémavezető: Dr. Bilincki Vilmos.\nAz alkalmazás során felhasznált képek nem sajátok!\nKépek: Dr. Harka Ákos felvételei, Google.\nHalleírások: Nébih által ingyenesen elérhető horgászvizsgára való felkészülést segítő tankönyv, Wikipédia.\nTilalmi Időszakok: 2022. évi állami horgászjegy és fogási napló.</string>
-
-
-
-
-
-
-
-
-
-
+    <string name="information_description">Az alkalmazás a Szegedi Tudományegyetem diplomamunka céljából készült az Android Studioban, 2022-ben.\nKészítette: Radics Milán, mérnökinformatikus hallgató.\nTémavezető: Dr. Bilicki Vilmos.\nAz alkalmazás során felhasznált képek nem sajátok!\nKépek: Dr. Harka Ákos felvételei, Google.\nHalleírások: Nébih által ingyenesen elérhető horgászvizsgára való felkészülést segítő tankönyv, Wikipédia.\nTilalmi Időszakok: 2022. évi állami horgászjegy és fogási napló.</string>
 </resources>
