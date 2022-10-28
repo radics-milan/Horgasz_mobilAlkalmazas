@@ -61,7 +61,36 @@ public class ClassFish {
         return description;
     }
 
+    public boolean isCloseSeasonAtDate(String date) {
+        String[] currentDateParts = date.split("\\.");
+        int currentMonth = Integer.parseInt(currentDateParts[0]);
+        int currentDay = Integer.parseInt(currentDateParts[1]);
+
+        if (this.getCloseSeason() != null) {
+            String[] closeSeasonDateParts = this.getCloseSeason().split("-");
+            String startDate = closeSeasonDateParts[0];
+            String endDate = closeSeasonDateParts[1];
+
+            String[] startDateParts = startDate.split("\\.");
+            int startMonth = Integer.parseInt(startDateParts[0]);
+            int startDay = Integer.parseInt(startDateParts[1]);
+
+            String[] endDateParts = endDate.split("\\.");
+            int endMonth = Integer.parseInt(endDateParts[0]);
+            int endDay = Integer.parseInt(endDateParts[1]);
+
+            if (startMonth <= endMonth) {
+                return (startMonth == currentMonth && currentDay >= startDay) || (endMonth == currentMonth && currentDay <= endDay) || (startMonth < currentMonth && currentMonth < endMonth);
+            } else {
+                return (startMonth == currentMonth && currentDay >= startDay) || (endMonth == currentMonth && currentDay <= endDay) || currentMonth > startMonth || currentMonth < endMonth;
+            }
+        } else {
+            return false;
+        }
+    }
+
     public boolean isCloseSeasonToday() {
+
         SimpleDateFormat sdf = new SimpleDateFormat("MM.dd.", Locale.getDefault());
         String today = sdf.format(new Date());
 

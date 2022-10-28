@@ -5,12 +5,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class DatabaseCatch extends SQLiteOpenHelper {
 
-    String LOG_TAG = DatabaseCatch.class.getName();
     private static final String TABLE_NAME = "CATCHES_TABLE";
     private static final String COL0 = "DATE_OF_CATCH";
     private static final String COL1 = "FISH_NAME";
@@ -49,6 +52,7 @@ public class DatabaseCatch extends SQLiteOpenHelper {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public ArrayList<ClassCatch> getAllCatch() {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME;
@@ -61,6 +65,7 @@ public class DatabaseCatch extends SQLiteOpenHelper {
         }
         assert data != null;
         data.close();
+        Collections.sort(catchArrayList, (c1, c2) -> c2.getDateOfCatch().compareToIgnoreCase(c1.getDateOfCatch()));
         return catchArrayList;
     }
 
@@ -76,6 +81,7 @@ public class DatabaseCatch extends SQLiteOpenHelper {
         }
         assert data != null;
         data.close();
+        Collections.sort(catchArrayList, (c1, c2) -> c2.getDateOfCatch().compareToIgnoreCase(c1.getDateOfCatch()));
         return catchArrayList;
     }
 

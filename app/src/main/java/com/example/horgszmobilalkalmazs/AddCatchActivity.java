@@ -71,6 +71,12 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
     private static final int READ_EXTERNAL_STORAGE_PERMISSION_CODE = 123;
     private static final int WRITE_EXTERNAL_STORAGE_PERMISSION_CODE = 124;
 
+    String[] Errors = {
+        "Nincs kép kiválasztva!",
+        "Nincs faj kiválasztva!",
+    };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,7 +123,7 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
         takePhotoImageView.setOnClickListener(o -> checkWriteExternalStoragePermission());
 
         if (catchImageUri == null){
-            errors.add("Nincs kép kiválasztva!");
+            errors.add(Errors[0]);
         }
 
 
@@ -170,12 +176,13 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         if (adapterView.getItemAtPosition(i).toString().equals(filterNames.get(0))){
-            errors.add("Nincs faj kiválasztva!");
+            errors.add(Errors[1]);
         } else {
             catchFish = new DatabaseFish(this).getHalByNev(adapterView.getItemAtPosition(i).toString());
-            removeError("Nincs faj kiválasztva!");
+            removeError(Errors[1]);
 
-            if (catchFish.isCloseSeasonToday()){
+            String date = catchDateTextView.getText().toString().substring(5, 10);
+            if (catchFish.isCloseSeasonAtDate(date)){
                 String catchDateFlagText;
                 if (catchFish.getName().equals("Harcsa")){
                     catchDateFlagText = catchFish.getName() + " tilalmi időszak van! Csak a legalább 100 cm-es példány tartható meg!";
@@ -259,6 +266,9 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
             catchBaitEditText.setText("");
             catchLocationEditText.setText("");
             catchSpeciesSpinner.setSelection(0);
+            catchDateFlagTextView.setVisibility(View.GONE);
+            catchFlagTextView.setVisibility(View.GONE);
+            catchFish = null;
             Toast.makeText(this, "Sikeres hozzáadás! (" + catchName + ")", Toast.LENGTH_SHORT).show();
         } else {
             showErrors();
@@ -287,9 +297,24 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
                 date.set(Calendar.HOUR_OF_DAY, hourOfDay);
                 date.set(Calendar.MINUTE, minute);
                 catchDateTextView.setText(sdf.format(date.getTime()));
+                if (!errors.contains(Errors[1])) {
+                    String selectedDate = catchDateTextView.getText().toString().substring(5, 10);
+                    if (catchFish.isCloseSeasonAtDate(selectedDate)){
+                        String catchDateFlagText;
+                        if (catchFish.getName().equals("Harcsa")){
+                            catchDateFlagText = catchFish.getName() + " tilalmi időszak van! Csak a legalább 100 cm-es példány tartható meg!";
+                        } else {
+                            catchDateFlagText = catchFish.getName() + " tilalmi időszak van! Tilos a megtartása!";
+                        } catchDateFlagTextView.setText(catchDateFlagText);
+                        catchDateFlagTextView.setVisibility(View.VISIBLE);
+
+                    } else {
+                        catchDateFlagTextView.setVisibility(View.GONE);
+                    }
+                }
+
             }, currentDate.get(Calendar.HOUR_OF_DAY), currentDate.get(Calendar.MINUTE), false).show();
         }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE)).show();
-
     }
 
 
@@ -363,12 +388,12 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
         if (requestCode == SELECT_PHOTO_CODE && resultCode == RESULT_OK){
             catchImageUri = data.getData();
             catchImageView.setImageURI(catchImageUri);
-            removeError("Nincs kép kiválasztva!");
+            removeError(Errors[0]);
         } else if(requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK){
             Bitmap bitmap = BitmapFactory.decodeFile(photographedImagePath);
             catchImageView.setImageBitmap(bitmap);
             MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, catchDateTextView.getText().toString() , "kep");
-            removeError("Nincs kép kiválasztva!");
+            removeError(Errors[0]);
         }
     }
 

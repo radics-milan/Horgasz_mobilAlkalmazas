@@ -2,8 +2,10 @@ package com.example.horgszmobilalkalmazs;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,16 +31,6 @@ public class FragmentCatches extends Fragment implements AdapterView.OnItemSelec
     ImageView eyeImageView;
     ImageView addImageView;
     Spinner catchesSpinner;
-
-    @SuppressLint("NotifyDataSetChanged")
-    @Override
-    public void onStart() {
-        super.onStart();
-        databaseCatch = new DatabaseCatch(getContext());
-        catchArray.clear();
-        catchArray.addAll(databaseCatch.getAllCatch());
-        adapterCatch.notifyDataSetChanged();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,11 +59,24 @@ public class FragmentCatches extends Fragment implements AdapterView.OnItemSelec
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @SuppressLint("NotifyDataSetChanged")
+    @Override
+    public void onStart() {
+        super.onStart();
+        databaseCatch = new DatabaseCatch(getContext());
+        catchArray.clear();
+        catchArray.addAll(databaseCatch.getAllCatch());
+        adapterCatch.notifyDataSetChanged();
+        catchesSpinner.setSelection(0);
+    }
+
     private void goToAddCatchActivity() {
         Intent intent = new Intent(getContext(), AddCatchActivity.class);
         startActivity(intent);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
