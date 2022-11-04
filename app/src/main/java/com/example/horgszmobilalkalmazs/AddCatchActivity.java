@@ -138,7 +138,8 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
                 }
                 if (catchFish != null && !text.equals("") ){
                     int size = Integer.parseInt(text);
-                    if (!catchFish.isCloseSeasonToday() && catchFish.getMinimumCatchSize() != 0){
+                    String date = catchDateTextView.getText().toString().substring(5, 10);
+                    if (!catchFish.isCloseSeasonAtDate(date) && catchFish.getMinimumCatchSize() != 0){
                         if (!catchFish.isBiggerThanMinimumCatchSize(size)){
                             String catchSizeFlagText = "Méreten aluli (" + catchFish.getMinimumCatchSize() +" cm alatti) hal nem tartható meg!";
                             catchSizeFlagTextView.setText(catchSizeFlagText);
@@ -146,7 +147,7 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
                         } else {
                             catchSizeFlagTextView.setVisibility(View.GONE);
                         }
-                    } else if (catchFish.isCloseSeasonToday() && catchFish.getMinimumCatchSizeInCloseSeason() != 0){
+                    } else if (catchFish.isCloseSeasonAtDate(date) && catchFish.getMinimumCatchSizeInCloseSeason() != 0){
                         if (!catchFish.isBiggerThanMinimumCatchSizeInCloseSeason(size)){
                             String catchSizeFlagText = "Méreten aluli (" + catchFish.getMinimumCatchSizeInCloseSeason() +" cm alatti) hal nem tartható meg!";
                             catchSizeFlagTextView.setText(catchSizeFlagText);
@@ -180,6 +181,8 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
         } else {
             catchFish = new DatabaseFish(this).getHalByNev(adapterView.getItemAtPosition(i).toString());
             removeError(Errors[1]);
+
+            catchSizeEditText.setText("");
 
             String date = catchDateTextView.getText().toString().substring(5, 10);
             if (catchFish.isCloseSeasonAtDate(date)){
