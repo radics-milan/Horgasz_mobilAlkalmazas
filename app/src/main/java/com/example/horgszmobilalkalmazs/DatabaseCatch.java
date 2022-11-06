@@ -14,7 +14,7 @@ import java.util.Collections;
 
 public class DatabaseCatch extends SQLiteOpenHelper {
 
-    private static final String TABLE_NAME = "CATCHES_TABLE";
+    private static final String TABLE_NAME = "CATCH_TABLE";
     private static final String COL0 = "DATE_OF_CATCH";
     private static final String COL1 = "FISH_NAME";
     private static final String COL2 = "IMAGE";
@@ -29,7 +29,7 @@ public class DatabaseCatch extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (" + COL0 + " TEXT PRIMARY KEY, " + COL1 + " TEXT , " + COL2 + " TEXT, " + COL3 + " NUMERIC, " + COL4 + " REAL, " + COL5 + " TEXT, " + COL6 + " TEXT " + ")";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " (" + COL0 + " TEXT PRIMARY KEY, " + COL1 + " TEXT , " + COL2 + " TEXT, " + COL3 + " INT, " + COL4 + " FLOAT, " + COL5 + " TEXT, " + COL6 + " TEXT " + ")";
         db.execSQL(createTable);
     }
 

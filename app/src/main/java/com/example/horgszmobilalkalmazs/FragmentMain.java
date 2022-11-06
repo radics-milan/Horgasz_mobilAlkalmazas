@@ -2,6 +2,7 @@ package com.example.horgszmobilalkalmazs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,7 @@ public class FragmentMain extends Fragment {
     private LinearLayout todayCloseSeasonalFishLinearLayout;
     private TextView todayCloseSeasonalFishTextView;
     private DatabaseFish databaseFish;
-    private boolean showCloseSeasonalFish = true;
+    private boolean showCloseSeasonalFish = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -31,9 +32,6 @@ public class FragmentMain extends Fragment {
         todayCloseSeasonalFishTextView = view.findViewById(R.id.today_s_close_seasonal_fish_textView);
         todayCloseSeasonalFishTextView.setOnClickListener(o -> changeVisibility());
         databaseFish = new DatabaseFish(getActivity());
-        databaseFish.fillLocalStore();
-        show();
-
         return view;
     }
 
@@ -43,11 +41,13 @@ public class FragmentMain extends Fragment {
     }
 
     private void show() {
-
+        int counter = 0;
         if (showCloseSeasonalFish){
             ArrayList<ClassFish> fish = databaseFish.getAllDataFromLocalStore();
+
             for (ClassFish hal: fish) {
                 if(hal.isCloseSeasonToday()){
+                    counter++;
                     TextView fishListItem = new TextView(getActivity());
                     fishListItem.setText(hal.getName());
                     fishListItem.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
@@ -55,8 +55,14 @@ public class FragmentMain extends Fragment {
                     fishListItem.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                     fishListItem.setOnClickListener(view -> onClickFish(hal.getName()));
                     todayCloseSeasonalFishLinearLayout.addView(fishListItem);
-                    todayCloseSeasonalFishTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_up, 0);
                 }
+            }
+            if (counter == 0) {
+                todayCloseSeasonalFishTextView.setText("Ma nincs tilalmi időszakos hal.");
+                todayCloseSeasonalFishTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+            } else {
+                todayCloseSeasonalFishTextView.setText("Mai tilalmi időszakos halak (" + counter + " db)");
+                todayCloseSeasonalFishTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_up, 0);
             }
         } else {
             todayCloseSeasonalFishLinearLayout.removeAllViews();

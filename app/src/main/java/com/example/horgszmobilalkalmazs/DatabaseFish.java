@@ -5,25 +5,33 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
 public class DatabaseFish extends SQLiteOpenHelper {
-    private static final String TABLE_NAME = "halak_table";
-    private static final String COL0 = "nev";
-    private static final String COL1 = "latinNev";
-    private static final String COL2 = "imageResourceId";
-    private static final String COL3 = "tipus";
-    private static final String COL4 = "tilalmiIdoszak";
-    private static final String COL5 = "legkisebbKifoghatoMeret";
-    private static final String COL6 = "legkisebbKifoghatoMeretTilalmiIdoszakban";
-    private static final String COL7 = "leiras";
+    private static final String TABLE_NAME = "FISH_TABLE";
+    private static final String COL0 = "NAME";
+    private static final String COL1 = "LATIN_NAME";
+    private static final String COL2 = "IMAGE_RESOURCE_ID";
+    private static final String COL3 = "TYPE";
+    private static final String COL4 = "CLOSE_SEASON";
+    private static final String COL5 = "MINIMUM_CATCH_SIZE";
+    private static final String COL6 = "MINIMUM_CATCH_SIZE_IN_CLOSE_SEASON";
+    private static final String COL7 = "DESCRIPTION";
     private final FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
     CollectionReference mItems = mFirestore.collection("Fish");
 
@@ -33,7 +41,7 @@ public class DatabaseFish extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (" + COL0 + " TEXT PRIMARY KEY, " + COL1 + " TEXT , " + COL2 + " NUMBER, " + COL3 + " TEXT, " + COL4 + " TEXT, " + COL5 + " NUMBER," + COL6 + " NUMBER," + COL7 + " TEXT" + " )";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " (" + COL0 + " TEXT PRIMARY KEY, " + COL1 + " TEXT , " + COL2 + " INT, " + COL3 + " TEXT, " + COL4 + " TEXT, " + COL5 + " INT," + COL6 + " INT," + COL7 + " TEXT" + " )";
         db.execSQL(createTable);
         //fillFireStore();
     }
@@ -67,8 +75,8 @@ public class DatabaseFish extends SQLiteOpenHelper {
     }
 
     public void fillFireStore(){
-        for (ClassFish hal: halak) {
-            mItems.add(hal);
+        for (ClassFish hal : halak) {
+            mItems.document(hal.getName()).set(hal);
         }
     }
 
@@ -89,7 +97,7 @@ public class DatabaseFish extends SQLiteOpenHelper {
 
     public void getAllDataFromFireStore(){
         ArrayList<ClassFish> halakTomb = new ArrayList<>();
-        mItems.orderBy(COL0).get().addOnSuccessListener(queryDocumentSnapshots -> {
+        mItems.get().addOnSuccessListener(queryDocumentSnapshots -> {
             for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                 ClassFish hal = documentSnapshot.toObject(ClassFish.class);
                 halakTomb.add(hal);

@@ -92,11 +92,10 @@ public class FragmentGame extends Fragment {
     }
 
     private void handleLevelLock(){
-        for (int i = 0; i < buttonArrayList.size()-1; i++) {
-            int level = i+1;
-            if (databaseScore.isLevelCompleted(level)){
-                buttonArrayList.get(level).setEnabled(true);
-                buttonArrayList.get(level).setCompoundDrawablesWithIntrinsicBounds( R.drawable.ic_unlocked, 0,  R.drawable.ic_unlocked, 0);
+        for (int i = 1; i < buttonArrayList.size(); i++) {
+            if (databaseScore.isLevelCompleted(i)){
+                buttonArrayList.get(i).setEnabled(true);
+                buttonArrayList.get(i).setCompoundDrawablesWithIntrinsicBounds( R.drawable.ic_unlocked, 0,  R.drawable.ic_unlocked, 0);
             }
         }
     }

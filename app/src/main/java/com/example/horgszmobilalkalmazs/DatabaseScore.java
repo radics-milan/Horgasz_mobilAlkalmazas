@@ -22,7 +22,7 @@ public class DatabaseScore extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (" + COL0 + " TEXT PRIMARY KEY, " + COL1 + " NUMERIC, " + COL2 + " NUMERIC, " + COL3 + " TEXT " + ")";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " (" + COL0 + " TEXT PRIMARY KEY, " + COL1 + " INT, " + COL2 + " INT, " + COL3 + " TEXT " + ")";
         db.execSQL(createTable);
     }
 

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,8 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     DatabaseFish databaseFish = new DatabaseFish(this);
+
+    String LOG_TAG = MainActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,12 +75,10 @@ public class MainActivity extends AppCompatActivity {
     BroadcastReceiver internetReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(ConnectivityManager.CONNECTIVITY_ACTION)){
-                boolean noConn = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
-                if (!noConn){
-                    //ha van internet, akkor megpróbáljuk letölteni az adatokat a felhőből
-                    databaseFish.getAllDataFromFireStore();
-                }
+            boolean noConn = intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
+            if (!noConn){
+                //ha van internet, akkor megpróbáljuk letölteni az adatokat a felhőből
+                databaseFish.getAllDataFromFireStore();
             }
         }
     };
