@@ -2,7 +2,6 @@ package com.example.horgszmobilalkalmazs;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +54,7 @@ public class FragmentMain extends Fragment {
                     fishListItem.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                     fishListItem.setTextColor(getResources().getColor(R.color.black));
                     fishListItem.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    fishListItem.setOnClickListener(view -> onClickFish(hal.getName()));
                     todayCloseSeasonalFishLinearLayout.addView(fishListItem);
                 }
             }
@@ -69,5 +69,11 @@ public class FragmentMain extends Fragment {
             todayCloseSeasonalFishLinearLayout.removeAllViews();
             todayCloseSeasonalFishTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_down, 0);
         }
+    }
+
+    private void onClickFish(String nev) {
+        Intent intent = new Intent(getActivity(), FishDetailsActivity.class);
+        intent.putExtra("fishName", nev);
+        startActivity(intent);
     }
 }
