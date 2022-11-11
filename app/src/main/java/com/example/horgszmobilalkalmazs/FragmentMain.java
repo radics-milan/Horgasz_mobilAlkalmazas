@@ -20,7 +20,7 @@ public class FragmentMain extends Fragment {
     private LinearLayout todayCloseSeasonalFishLinearLayout;
     private TextView todayCloseSeasonalFishTextView;
     private DatabaseFish databaseFish;
-    private boolean showCloseSeasonalFish = false;
+    private boolean showCloseSeasonalFish = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,6 +32,7 @@ public class FragmentMain extends Fragment {
         todayCloseSeasonalFishTextView = view.findViewById(R.id.today_s_close_seasonal_fish_textView);
         todayCloseSeasonalFishTextView.setOnClickListener(o -> changeVisibility());
         databaseFish = new DatabaseFish(getActivity());
+        show();
         return view;
     }
 
@@ -42,6 +43,7 @@ public class FragmentMain extends Fragment {
 
     private void show() {
         int counter = 0;
+        todayCloseSeasonalFishLinearLayout.removeAllViews();
         if (showCloseSeasonalFish){
             ArrayList<ClassFish> fish = databaseFish.getAllDataFromLocalStore();
 
@@ -53,7 +55,6 @@ public class FragmentMain extends Fragment {
                     fishListItem.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                     fishListItem.setTextColor(getResources().getColor(R.color.black));
                     fishListItem.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                    fishListItem.setOnClickListener(view -> onClickFish(hal.getName()));
                     todayCloseSeasonalFishLinearLayout.addView(fishListItem);
                 }
             }
@@ -69,11 +70,4 @@ public class FragmentMain extends Fragment {
             todayCloseSeasonalFishTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_down, 0);
         }
     }
-
-    private void onClickFish(String nev) {
-        Intent intent = new Intent(getActivity(), FishDetailsActivity.class);
-        intent.putExtra("fishName", nev);
-        startActivity(intent);
-    }
-
 }

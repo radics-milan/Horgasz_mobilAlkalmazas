@@ -21,8 +21,6 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
     DatabaseFish databaseFish = new DatabaseFish(this);
 
-    String LOG_TAG = MainActivity.class.getName();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
