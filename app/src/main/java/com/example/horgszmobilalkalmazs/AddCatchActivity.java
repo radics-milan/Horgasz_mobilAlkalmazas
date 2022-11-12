@@ -44,6 +44,7 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
     EditText catchBaitEditText;
     EditText catchLocationEditText;
     Spinner catchSpeciesSpinner;
+    ImageView backImageView;
     Button saveCatchButton;
     Button cancelCatchButton;
     TextView catchFlagTextView;
@@ -91,6 +92,7 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
         catchBaitEditText = findViewById(R.id.catchBaitEditText);
         catchLocationEditText = findViewById(R.id.catchLocationEditText);
         catchSpeciesSpinner = findViewById(R.id.catchSpeciesSpinner);
+        backImageView = findViewById(R.id.backImageView);
         saveCatchButton = findViewById(R.id.saveCatchButton);
         cancelCatchButton = findViewById(R.id.cancelCatchButton);
         catchFlagTextView = findViewById(R.id.catchFlagTextView);
@@ -105,6 +107,7 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
         catchDateTextView.setText( sdf.format(new Date()));
 
         catchDateTextView.setOnClickListener(o -> selectDate());
+        backImageView.setOnClickListener(o -> finish());
         cancelCatchButton.setOnClickListener(o -> finish());
         saveCatchButton.setOnClickListener(o -> saveCatch());
 
