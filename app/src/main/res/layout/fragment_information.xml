@@ -37,11 +37,14 @@
                 android:contentDescription="@string/kep"/>
 
             <TextView
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:text="@string/information_description"/>
+                android:text="@string/information_description"
+                android:justificationMode="inter_word"/>
         </LinearLayout>
     </ScrollView>
 
