@@ -27,6 +27,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -396,9 +397,12 @@ public class AddCatchActivity extends AppCompatActivity implements AdapterView.O
             catchImageView.setImageURI(catchImageUri);
             removeError(Errors[0]);
         } else if(requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK){
-            Bitmap bitmap = BitmapFactory.decodeFile(photographedImagePath);
-            catchImageView.setImageBitmap(bitmap);
-            MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, catchDateTextView.getText().toString() , "kep");
+            catchImageView.setImageURI(catchImageUri);
+            try {
+                MediaStore.Images.Media.insertImage(getContentResolver(), photographedImagePath, sdf.format(new Date()), "kep");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
             removeError(Errors[0]);
         }
     }
